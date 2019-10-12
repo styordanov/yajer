@@ -1,51 +1,30 @@
-import * as vscode from 'vscode';
-import Document from './lib/document';
+import { ExtensionContext, window, workspace } from 'vscode';
+import Decorator from './lib/decorator';
 
-interface Extension {
-	editor: vscode.TextEditor;
-}
+export function activate(context: ExtensionContext) {
+  console.log('Congratulations, your extension "yajer" is now active!');
 
-const extension: Extension = {
-	editor: vscode.window.activeTextEditor
-};
+  const decorator = new Decorator(window.activeTextEditor);
+  decorator.triggerUpdateDecorations();
 
-const updateDecorations = () => {
-	const lines = Document.getLines(extension.editor.document);
-	const tests = Document.getTests(extension.editor.document);
-	console.log(lines, tests);
-};
+  window.onDidChangeActiveTextEditor(
+    editor => {
+      decorator.setEditor(editor);
+      decorator.triggerUpdateDecorations();
+    },
+    null,
+    context.subscriptions
+  );
 
-const triggerUpdateDecorations = (timeout: NodeJS.Timer | undefined) => {
-	timeout && clearTimeout(timeout);
-	timeout = setTimeout(updateDecorations, 500);
-};
-
-export function activate(context: vscode.ExtensionContext) {
-	console.log('Congratulations, your extension "yajer" is now active!');
-
-	let timeout: NodeJS.Timer | undefined = undefined;
-	extension.editor && triggerUpdateDecorations(timeout);
-
-	vscode.window.onDidChangeActiveTextEditor(
-		editor => {
-			extension.editor = editor;
-			if (editor) {
-				triggerUpdateDecorations(timeout);
-			}
-		},
-		null,
-		context.subscriptions
-	);
-
-	vscode.workspace.onDidChangeTextDocument(
-		event => {
-			if (extension.editor && event.document === extension.editor.document) {
-				triggerUpdateDecorations(timeout);
-			}
-		},
-		null,
-		context.subscriptions
-	);
+  workspace.onDidChangeTextDocument(
+    event => {
+      if (decorator.getEditor() && event.document === decorator.getEditor().document) {
+        decorator.triggerUpdateDecorations();
+      }
+    },
+    null,
+    context.subscriptions
+  );
 }
 
 // this method is called when your extension is deactivated
