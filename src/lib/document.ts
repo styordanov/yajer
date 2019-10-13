@@ -1,9 +1,5 @@
-import { Range, TextLine, TextDocument } from 'vscode';
-
-export interface Test {
-  name: string;
-  range: Range;
-}
+import { TextLine, TextDocument } from 'vscode';
+import { Test } from './types';
 
 export default class Document {
   constructor(private readonly document: TextDocument) {}
@@ -24,5 +20,13 @@ export default class Document {
       matches && tests.push({ name: matches[4], range: textLine.range } as Test);
       return tests;
     }, []);
+  }
+
+  public getTestOnLine(line: number): Test {
+    return this.findTestOnLine(this.getTests(), line);
+  }
+
+  public findTestOnLine(tests: Test[], line: number): Test {
+    return tests.filter(({ range: { start } }) => start.line === line).pop();
   }
 }

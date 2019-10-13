@@ -1,16 +1,26 @@
 import { ExtensionContext, window, workspace } from 'vscode';
+import Document from './lib/document';
 import Decorator from './lib/decorator';
+import HoverProvider from './lib/hover-provider';
+import { Extension } from './lib/types';
 
 export function activate(context: ExtensionContext) {
-  console.log('Congratulations, your extension "yajer" is now active!');
+  const editor = window.activeTextEditor;
+  const document = new Document(editor.document);
 
-  const decorator = new Decorator(window.activeTextEditor);
-  decorator.triggerUpdateDecorations();
+  const extension: Extension = { context, document, editor };
+
+  const decorator = new Decorator(extension);
+  const hoverProvider = new HoverProvider(extension);
+
+  decorator.update();
+  hoverProvider.register();
 
   window.onDidChangeActiveTextEditor(
     editor => {
-      decorator.setEditor(editor);
-      decorator.triggerUpdateDecorations();
+      extension.editor = editor;
+      decorator.update();
+      hoverProvider.register();
     },
     null,
     context.subscriptions
@@ -18,8 +28,9 @@ export function activate(context: ExtensionContext) {
 
   workspace.onDidChangeTextDocument(
     event => {
-      if (decorator.getEditor() && event.document === decorator.getEditor().document) {
-        decorator.triggerUpdateDecorations();
+      if (extension.editor && event.document === extension.editor.document) {
+        decorator.update();
+        hoverProvider.register();
       }
     },
     null,

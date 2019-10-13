@@ -1,5 +1,5 @@
-import { DecorationOptions, TextEditor, TextEditorDecorationType, window } from 'vscode';
-import Document from './document';
+import { DecorationOptions, TextEditorDecorationType, Uri, window } from 'vscode';
+import { Extension } from './types';
 
 export default class Decorator {
   private timeout: NodeJS.Timer;
@@ -8,31 +8,25 @@ export default class Decorator {
     after: { margin: '0 0 0 1rem' }
   });
 
-  constructor(private editor: TextEditor) {}
-
-  public getEditor() {
-    return this.editor;
-  }
-
-  public setEditor(editor: TextEditor) {
-    this.editor = editor;
-  }
+  constructor(private readonly extension: Extension) {}
 
   private getDecorations() {
-    const tests = new Document(this.editor.document).getTests();
-    this.decorations = tests.map(({ name, range }) => ({
+    const contentIconPath = Uri.file(this.extension.context.asAbsolutePath('media/lab.svg').replace(/\\/g, '/'));
+
+    const tests = this.extension.document.getTests();
+    this.decorations = tests.map(({ range }) => ({
       range,
-      renderOptions: { after: { contentText: name, color: 'red' } }
+      renderOptions: { after: { contentIconPath } }
     }));
     return this.decorations;
   }
 
-  private updateDecorations() {
-    this.editor && this.editor.setDecorations(Decorator.decorationType, this.getDecorations());
+  private setDecorations() {
+    this.extension.editor && this.extension.editor.setDecorations(Decorator.decorationType, this.getDecorations());
   }
 
-  public triggerUpdateDecorations() {
+  public update() {
     this.timeout && clearTimeout(this.timeout);
-    this.timeout = setTimeout(this.updateDecorations.bind(this), 500);
+    this.timeout = setTimeout(this.setDecorations.bind(this), 500);
   }
 }
