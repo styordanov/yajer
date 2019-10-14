@@ -1,5 +1,5 @@
 import { Range, ExtensionContext, TextEditor } from 'vscode';
-import Document from './document';
+import Document from '../documents/document';
 
 export interface Test {
   name: string;

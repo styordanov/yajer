@@ -1,5 +1,6 @@
-import { TextDocument, Position, CancellationToken, Hover, Range, languages, Disposable } from 'vscode';
-import { Extension, Test } from './types';
+import { TextDocument, Position, CancellationToken, Hover, Range, languages, Disposable, MarkdownString } from 'vscode';
+import { Extension, Test } from '../@types/extension';
+import HoverMessage from './hover-message';
 
 export default class HoverProvider implements Disposable {
   private hoverDisposable: Disposable;
@@ -15,7 +16,8 @@ export default class HoverProvider implements Disposable {
     const range = document.validateRange(
       new Range(position.line, Number.MAX_SAFE_INTEGER, position.line, Number.MAX_SAFE_INTEGER)
     );
-    return new Hover(test.name, range);
+    const message: MarkdownString = HoverMessage.getMessage();
+    return new Hover(message, range);
   }
 
   public register() {

@@ -1,5 +1,5 @@
 import { DecorationOptions, TextEditorDecorationType, Uri, window } from 'vscode';
-import { Extension } from './types';
+import { Extension } from '../@types/extension';
 
 export default class Decorator {
   private timeout: NodeJS.Timer;
