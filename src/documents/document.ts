@@ -1,5 +1,5 @@
 import { TextLine, TextDocument } from 'vscode';
-import { Test } from '../@types/extension';
+import { Test } from '../types';
 
 export default class Document {
   constructor(private readonly document: TextDocument) {}

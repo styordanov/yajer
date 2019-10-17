@@ -2,7 +2,7 @@ import { ExtensionContext, window, workspace } from 'vscode';
 import Document from './documents/document';
 import Decorator from './decorators/decorator';
 import HoverProvider from './hovers/hover-provider';
-import { Extension } from './@types/extension';
+import { Extension } from './types';
 
 export function activate(context: ExtensionContext) {
   const editor = window.activeTextEditor;

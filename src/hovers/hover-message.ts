@@ -1,19 +1,16 @@
 import { MarkdownString } from 'vscode';
+import { RunCommandArgs } from '../types';
+import { runTestCommand, runFileCommand } from '../commands';
 
 export default class HoverMessage {
-  public static getMessage(): MarkdownString {
-    const runCurrentOldConfig = `[Run Current (old config)](https://www.google.com "Run current test with last known configuration")`;
+	public static getMessage(args: RunCommandArgs): MarkdownString {
+		const runTestCommandMessage = runTestCommand.getMarkdown(args);
+		const runFileCommandMessage = runFileCommand.getMarkdown({ ...args, test: undefined });
 
-    const runCurrentNewConfig = `[Run Current (new config)](https://www.google.com "Run current test with prompt for new configuration")`;
+		const message = `${runTestCommandMessage} | ${runFileCommandMessage}`;
 
-    const runAllOldConfig = `[Run All (old config)](https://www.google.com "Run all tests in file with last known configuration")`;
-
-    const runAllNewConfig = `[Run All (new config)](https://www.google.com "Run all tests in file with prompt for new configuration")`;
-
-    const message = [runCurrentOldConfig, runCurrentNewConfig, runAllOldConfig, runAllNewConfig].join('\n\n');
-
-    const markdown = new MarkdownString(message);
-    markdown.isTrusted = true;
-    return markdown;
-  }
+		const markdown = new MarkdownString(message);
+		markdown.isTrusted = true;
+		return markdown;
+	}
 }

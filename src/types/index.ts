@@ -11,3 +11,19 @@ export interface Extension {
   document: Document;
   editor: TextEditor;
 }
+
+export interface RunCommandArgs {
+  file: string;
+  test?: string;
+  config?: string;
+}
+
+export interface RunCommandMarkdownArgs {
+  title: string;
+  description?: string;
+}
+
+export enum Commands {
+  RUN_FILE = 'yajer.run.file',
+  RUN_TEST = 'yajer.run.test'
+}
