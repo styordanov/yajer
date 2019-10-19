@@ -17,6 +17,11 @@ export default abstract class RunCommand extends Command {
 	}
 
 	async execute(args: RunCommandArgs) {
-		await this.extension.terminal.get(true);
+		let command = `jest ${args.file}`;
+		args.test && (command = `${command} -t "${args.test}"`);
+		args.config && (command = `${command} -c "${args.config}"`);
+
+		const terminal = await this.extension.terminal.get(true);
+		terminal.sendText(command);
 	}
 }
