@@ -1,4 +1,4 @@
-import { Commands, RunCommandMarkdownArgs, RunCommandArgs } from '../types';
+import { Commands, RunCommandMarkdownArgs, Extension } from '../types';
 import RunCommand from './run-command';
 
 export default class RunTestCommand extends RunCommand {
@@ -7,7 +7,7 @@ export default class RunTestCommand extends RunCommand {
 		description: 'Run current test'
 	};
 
-	constructor() {
-		super(Commands.RUN_TEST);
+	constructor(protected readonly extension: Extension) {
+		super(Commands.RUN_TEST, extension);
 	}
 }

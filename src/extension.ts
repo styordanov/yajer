@@ -2,40 +2,47 @@ import { ExtensionContext, window, workspace } from 'vscode';
 import Document from './documents/document';
 import Decorator from './decorators/decorator';
 import HoverProvider from './hovers/hover-provider';
-import { Extension } from './types';
+import { Extension, Commands } from './types';
+import TerminalProvider from './terminals/terminal-provider';
+import RunTestCommand from './commands/run-test-command';
+import RunFileCommand from './commands/run-file-command';
 
 export function activate(context: ExtensionContext) {
-  const editor = window.activeTextEditor;
-  const document = new Document(editor.document);
+	const editor = window.activeTextEditor;
+	const document = new Document(editor.document);
+	const terminal = new TerminalProvider();
 
-  const extension: Extension = { context, document, editor };
+	const extension: Extension = { context, document, editor, terminal, commands: {} };
 
-  const decorator = new Decorator(extension);
-  const hoverProvider = new HoverProvider(extension);
+	extension.commands[Commands.RUN_TEST] = new RunTestCommand(extension);
+	extension.commands[Commands.RUN_FILE] = new RunFileCommand(extension);
 
-  decorator.update();
-  hoverProvider.register();
+	const decorator = new Decorator(extension);
+	const hoverProvider = new HoverProvider(extension);
 
-  window.onDidChangeActiveTextEditor(
-    editor => {
-      extension.editor = editor;
-      decorator.update();
-      hoverProvider.register();
-    },
-    null,
-    context.subscriptions
-  );
+	decorator.update();
+	hoverProvider.register();
 
-  workspace.onDidChangeTextDocument(
-    event => {
-      if (extension.editor && event.document === extension.editor.document) {
-        decorator.update();
-        hoverProvider.register();
-      }
-    },
-    null,
-    context.subscriptions
-  );
+	window.onDidChangeActiveTextEditor(
+		editor => {
+			extension.editor = editor;
+			decorator.update();
+			hoverProvider.register();
+		},
+		null,
+		context.subscriptions
+	);
+
+	workspace.onDidChangeTextDocument(
+		event => {
+			if (extension.editor && event.document === extension.editor.document) {
+				decorator.update();
+				hoverProvider.register();
+			}
+		},
+		null,
+		context.subscriptions
+	);
 }
 
 // this method is called when your extension is deactivated

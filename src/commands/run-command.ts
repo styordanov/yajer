@@ -1,10 +1,10 @@
-import { Commands, RunCommandArgs, RunCommandMarkdownArgs } from '../types';
+import { Commands, RunCommandArgs, RunCommandMarkdownArgs, Extension } from '../types';
 import Command from './command';
 
 export default abstract class RunCommand extends Command {
 	protected markdownArgs: RunCommandMarkdownArgs;
 
-	constructor(protected readonly command: Commands) {
+	constructor(protected readonly command: Commands, protected readonly extension: Extension) {
 		super(command);
 	}
 
@@ -16,7 +16,7 @@ export default abstract class RunCommand extends Command {
 		return `[${this.markdownArgs.title}](${this.getMarkdownArgs(args)} "${this.markdownArgs.description}")`;
 	}
 
-	execute(...args: unknown[]) {
-		console.log(args);
+	async execute(args: RunCommandArgs) {
+		await this.extension.terminal.get(true);
 	}
 }

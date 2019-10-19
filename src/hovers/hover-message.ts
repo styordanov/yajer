@@ -1,11 +1,12 @@
 import { MarkdownString } from 'vscode';
-import { RunCommandArgs } from '../types';
-import { runTestCommand, runFileCommand } from '../commands';
+import { Extension, RunCommandArgs, Commands } from '../types';
 
 export default class HoverMessage {
-	public static getMessage(args: RunCommandArgs): MarkdownString {
-		const runTestCommandMessage = runTestCommand.getMarkdown(args);
-		const runFileCommandMessage = runFileCommand.getMarkdown({ ...args, test: undefined });
+	constructor(private readonly extension: Extension) {}
+
+	public getMessage(args: RunCommandArgs): MarkdownString {
+		const runTestCommandMessage = this.extension.commands[Commands.RUN_TEST].getMarkdown(args);
+		const runFileCommandMessage = this.extension.commands[Commands.RUN_FILE].getMarkdown({ ...args, test: undefined });
 
 		const message = `${runTestCommandMessage} | ${runFileCommandMessage}`;
 
