@@ -1,5 +1,6 @@
 import { Commands, RunCommandArgs, RunCommandMarkdownArgs, Extension } from '../types';
 import Command from './command';
+import ConfigQuickPick from '../quickpicks/config-quickpick';
 
 export default abstract class RunCommand extends Command {
 	protected markdownArgs: RunCommandMarkdownArgs;
@@ -17,6 +18,8 @@ export default abstract class RunCommand extends Command {
 	}
 
 	async execute(args: RunCommandArgs) {
+		//const config = await new ConfigQuickPick(this.extension).show();
+
 		let command = `jest ${args.file}`;
 		args.test && (command = `${command} -t "${args.test}"`);
 		args.config && (command = `${command} -c "${args.config}"`);
