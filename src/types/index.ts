@@ -23,7 +23,10 @@ export interface ExtensionCommands {
 export interface RunCommandArgs {
 	file: string;
 	test?: string;
-	config?: string;
+}
+
+export interface RunCommandConfigs {
+	[key: string]: string;
 }
 
 export interface RunCommandMarkdownArgs {

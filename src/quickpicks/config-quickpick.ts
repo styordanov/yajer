@@ -2,11 +2,8 @@ import { URL } from 'url';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 import { workspace, window } from 'vscode';
-import { Extension } from '../types';
 
 export default class ConfigQuickPick {
-	constructor(private readonly extension: Extension) {}
-
 	private getWorkspaceFolderPath(): string {
 		const [workspaceFolder] = workspace.workspaceFolders;
 		return workspaceFolder ? workspaceFolder.uri.path : './';
