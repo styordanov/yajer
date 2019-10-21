@@ -26,15 +26,17 @@ export default abstract class RunCommand extends Command {
 			.digest('hex');
 	}
 
-	private async getConfig(file: string): Promise<string> {
+	private async getConfig(file: string, forceConfig: boolean): Promise<string> {
 		const hash = this.generateHash(file);
-		!RunCommand.configs[hash] && (RunCommand.configs[hash] = await new ConfigQuickPick().show());
+		if (forceConfig || !RunCommand.configs[hash]) {
+			RunCommand.configs[hash] = await new ConfigQuickPick().show();
+		}
 		return RunCommand.configs[hash];
 	}
 
 	async execute(args: RunCommandArgs) {
-		const { file, test } = args;
-		const config = await this.getConfig(file);
+		const { file, test, forceConfig } = args;
+		const config = await this.getConfig(file, forceConfig);
 
 		let command = `jest ${file}`;
 		test && (command = `${command} -t "${test}"`);

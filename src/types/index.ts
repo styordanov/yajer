@@ -23,6 +23,7 @@ export interface ExtensionCommands {
 export interface RunCommandArgs {
 	file: string;
 	test?: string;
+	forceConfig?: boolean;
 }
 
 export interface RunCommandConfigs {
