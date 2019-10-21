@@ -4,7 +4,7 @@ import Command from './command';
 import ConfigQuickPick from '../quickpicks/config-quickpick';
 
 export default abstract class RunCommand extends Command {
-	protected configs: RunCommandConfigs = {};
+	static configs: RunCommandConfigs = {};
 	protected markdownArgs: RunCommandMarkdownArgs;
 
 	constructor(protected readonly command: Commands, protected readonly extension: Extension) {
@@ -28,8 +28,8 @@ export default abstract class RunCommand extends Command {
 
 	private async getConfig(file: string): Promise<string> {
 		const hash = this.generateHash(file);
-		!this.configs[hash] && (this.configs[hash] = await new ConfigQuickPick().show());
-		return this.configs[hash];
+		!RunCommand.configs[hash] && (RunCommand.configs[hash] = await new ConfigQuickPick().show());
+		return RunCommand.configs[hash];
 	}
 
 	async execute(args: RunCommandArgs) {
