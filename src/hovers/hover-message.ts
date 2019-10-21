@@ -5,11 +5,13 @@ export default class HoverMessage {
 	constructor(private readonly extension: Extension) {}
 
 	public getMessage(args: RunCommandArgs): MarkdownString {
-		const runTestCommandMessage = this.extension.commands[Commands.RUN_TEST].getMarkdown(args);
-		const runFileCommandMessage = this.extension.commands[Commands.RUN_FILE].getMarkdown({ ...args, test: undefined });
+		const runCommand = this.extension.commands[Commands.RUN_TEST];
 
-		const runTestCommandForceConfigMessage = this.extension.commands[Commands.RUN_TEST].getMarkdown({ ...args, forceConfig: true });
-		const runFileCommandForceConfigMessage = this.extension.commands[Commands.RUN_FILE].getMarkdown({ ...args, test: undefined, forceConfig: true });
+		const runTestCommandMessage = runCommand.getMarkdown({ title: 'Run Test' }, args);
+		const runFileCommandMessage = runCommand.getMarkdown({ title: 'Run File' }, { ...args, test: undefined });
+
+		const runTestCommandForceConfigMessage = runCommand.getMarkdown({ title: 'Run Test *' }, { ...args, forceConfig: true });
+		const runFileCommandForceConfigMessage = runCommand.getMarkdown({ title: 'Run File *' }, { ...args, test: undefined, forceConfig: true });
 
 		const message = `${runTestCommandMessage} | ${runFileCommandMessage} | ${runTestCommandForceConfigMessage} | ${runFileCommandForceConfigMessage}`;
 

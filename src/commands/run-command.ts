@@ -1,22 +1,17 @@
 const crypto = require('crypto');
-import { Commands, RunCommandArgs, RunCommandMarkdownArgs, Extension, RunCommandConfigs } from '../types';
+import { Commands, RunCommandArgs, Extension, RunCommandConfigs, RunCommandMarkdown } from '../types';
 import Command from './command';
 import ConfigQuickPick from '../quickpicks/config-quickpick';
 
-export default abstract class RunCommand extends Command {
+export default class RunCommand extends Command {
 	static configs: RunCommandConfigs = {};
-	protected markdownArgs: RunCommandMarkdownArgs;
 
-	constructor(protected readonly command: Commands, protected readonly extension: Extension) {
-		super(command);
+	constructor(protected readonly extension: Extension) {
+		super(Commands.RUN_TEST);
 	}
 
-	getMarkdownArgs<RunCommandArgs>(args: RunCommandArgs): string {
-		return super.getMarkdownArgs(args);
-	}
-
-	getMarkdown(args: RunCommandArgs): string {
-		return `[${this.markdownArgs.title}](${this.getMarkdownArgs(args)} "${this.markdownArgs.description}")`;
+	getMarkdown(command: RunCommandMarkdown, args: RunCommandArgs): string {
+		return `[${command.title}](${this.getMarkdownArgs(args)} "${command.description}")`;
 	}
 
 	private generateHash(message: string): string {

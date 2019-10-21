@@ -16,7 +16,7 @@ export default abstract class Command implements Disposable {
 		return `command:${this.command}?${encodeURIComponent(JSON.stringify(args))}`;
 	}
 
-	abstract getMarkdown(args: unknown): string;
+	abstract getMarkdown(command: unknown, args: unknown): string;
 
 	abstract execute(args: unknown): unknown;
 }

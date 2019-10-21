@@ -4,8 +4,7 @@ import Decorator from './decorators/decorator';
 import HoverProvider from './hovers/hover-provider';
 import { Extension, Commands } from './types';
 import TerminalProvider from './terminals/terminal-provider';
-import RunTestCommand from './commands/run-test-command';
-import RunFileCommand from './commands/run-file-command';
+import RunCommand from './commands/run-command';
 
 export function activate(context: ExtensionContext) {
 	const editor = window.activeTextEditor;
@@ -14,8 +13,7 @@ export function activate(context: ExtensionContext) {
 
 	const extension: Extension = { context, document, editor, terminal, commands: {} };
 
-	extension.commands[Commands.RUN_TEST] = new RunTestCommand(extension);
-	extension.commands[Commands.RUN_FILE] = new RunFileCommand(extension);
+	extension.commands[Commands.RUN_TEST] = new RunCommand(extension);
 
 	const decorator = new Decorator(extension);
 	const hoverProvider = new HoverProvider(extension);

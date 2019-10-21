@@ -30,12 +30,11 @@ export interface RunCommandConfigs {
 	[key: string]: string;
 }
 
-export interface RunCommandMarkdownArgs {
+export interface RunCommandMarkdown {
 	title: string;
 	description?: string;
 }
 
 export enum Commands {
-	RUN_FILE = 'yajer.run.file',
 	RUN_TEST = 'yajer.run.test'
 }
