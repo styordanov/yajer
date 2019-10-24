@@ -11,7 +11,7 @@ export default class RunCommand extends Command {
 	}
 
 	getMarkdown(command: RunCommandMarkdown, args: RunCommandArgs): string {
-		return `[${command.title}](${this.getMarkdownArgs(args)} "${command.description}")`;
+		return `[\`${command.title}\`](${this.getMarkdownArgs(args)} "${command.description}")`;
 	}
 
 	private generateHash(message: string): string {

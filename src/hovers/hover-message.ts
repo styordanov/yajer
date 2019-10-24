@@ -12,25 +12,19 @@ export default class HoverMessage {
 	}
 
 	private getRunTestMarkdown(args: RunCommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown({ title: 'Run Test', description: 'Run current test' }, args);
+		return this.getRunCommandMarkdown({ title: '↪', description: 'Run current test with last known config' }, args);
 	}
 
 	private getRunFileMarkdown(args: RunCommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown({ title: 'Run File', description: 'Run current file' }, { ...args, test: undefined });
+		return this.getRunCommandMarkdown({ title: '↪↪', description: 'Run current file with last known config' }, { ...args, test: undefined });
 	}
 
 	private getRunTestConfigMarkdown(args: RunCommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown(
-			{ title: 'Run Test *', description: 'Run current test with last known config' },
-			{ ...args, forceConfig: true }
-		);
+		return this.getRunCommandMarkdown({ title: '↬', description: 'Run current test' }, { ...args, forceConfig: true });
 	}
 
 	private getRunFileConfigMarkdown(args: RunCommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown(
-			{ title: 'Run File *', description: 'Run current file with last known config' },
-			{ ...args, test: undefined, forceConfig: true }
-		);
+		return this.getRunCommandMarkdown({ title: '↬↬', description: 'Run current file' }, { ...args, test: undefined, forceConfig: true });
 	}
 
 	public getMessage(args: RunCommandArgs): MarkdownString {
@@ -44,7 +38,7 @@ export default class HoverMessage {
 			runFileCommandMarkdown.value,
 			runTestCommandConfigMarkdown.value,
 			runFileCommandConfigMarkdown.value
-		].join(' ● ');
+		].join(' ');
 
 		const markdown = new MarkdownString(message);
 		markdown.isTrusted = true;
