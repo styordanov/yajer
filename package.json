@@ -1,7 +1,12 @@
 {
 	"name": "yajer",
-	"displayName": "yajer",
-	"description": "Yet Another JEst Runner",
+	"displayName": "YAJER",
+	"description": "Yet Another Jest Runner",
+	"publisher": "styordanov",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/styordanov/yajer.git"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.39.0"
