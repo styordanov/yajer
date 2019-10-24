@@ -36,7 +36,6 @@ export function activate(context: ExtensionContext) {
 		event => {
 			if (extension.editor && event.document === extension.editor.document) {
 				decorator.update();
-				hoverProvider.register();
 			}
 		},
 		null,
