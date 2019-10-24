@@ -8,7 +8,7 @@ import RunCommand from './commands/run-command';
 
 export function activate(context: ExtensionContext) {
 	const editor = window.activeTextEditor;
-	const document = new Document(editor.document);
+	const document = new Document(editor && editor.document);
 	const terminal = new TerminalProvider();
 
 	const extension: Extension = { context, document, editor, terminal, commands: {} };
@@ -24,6 +24,7 @@ export function activate(context: ExtensionContext) {
 	window.onDidChangeActiveTextEditor(
 		editor => {
 			extension.editor = editor;
+			extension.document = new Document(editor.document);
 			decorator.update();
 			hoverProvider.register();
 		},
