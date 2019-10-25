@@ -20,17 +20,17 @@ export interface ExtensionCommands {
 	[key: string]: Command;
 }
 
-export interface RunCommandArgs {
+export interface CommandArgs {
 	file: string;
 	test?: string;
 	forceConfig?: boolean;
 }
 
-export interface RunCommandConfigs {
+export interface CommandConfigs {
 	[key: string]: string;
 }
 
-export interface RunCommandMarkdown {
+export interface CommandMarkdown {
 	title: string;
 	description?: string;
 }
