@@ -36,5 +36,6 @@ export interface RunCommandMarkdown {
 }
 
 export enum Commands {
-	RUN_TEST = 'yajer.run.test'
+	RUN_TEST = 'yajer.run.test',
+	DEBUG_TEST = 'yajer.debug.test'
 }

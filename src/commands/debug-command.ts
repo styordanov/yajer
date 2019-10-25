@@ -1,13 +1,14 @@
 const crypto = require('crypto');
+import { DebugConfiguration, debug } from 'vscode';
 import { Commands, RunCommandArgs, Extension, RunCommandConfigs, RunCommandMarkdown } from '../types';
 import Command from './command';
 import ConfigQuickPick from '../quickpicks/config-quickpick';
 
-export default class RunCommand extends Command {
+export default class DebugCommand extends Command {
 	static configs: RunCommandConfigs = {};
 
 	constructor(protected readonly extension: Extension) {
-		super(Commands.RUN_TEST);
+		super(Commands.DEBUG_TEST);
 	}
 
 	getMarkdown(command: RunCommandMarkdown, args: RunCommandArgs): string {
@@ -23,21 +24,29 @@ export default class RunCommand extends Command {
 
 	private async getConfig(file: string, forceConfig: boolean): Promise<string> {
 		const hash = this.generateHash(file);
-		if (forceConfig || !RunCommand.configs[hash]) {
-			RunCommand.configs[hash] = await ConfigQuickPick.show();
+		if (forceConfig || !DebugCommand.configs[hash]) {
+			DebugCommand.configs[hash] = await ConfigQuickPick.show();
 		}
-		return RunCommand.configs[hash];
+		return DebugCommand.configs[hash];
 	}
 
 	async execute(args: RunCommandArgs) {
 		const { file, test, forceConfig } = args;
 		const config = await this.getConfig(file, forceConfig);
 
-		let command = `jest ${file}`;
-		test && (command = `${command} -t "${test}"`);
-		config && (command = `${command} -c "${config}"`);
+		const debugConfiguration: DebugConfiguration = {
+			console: 'integratedTerminal',
+			internalConsoleOptions: 'neverOpen',
+			name: 'Debug Jest Tests',
+			program: 'jest',
+			request: 'launch',
+			type: 'node',
+			args: ['--runInBand', file]
+		};
 
-		const terminal = await this.extension.terminal.get(true);
-		terminal.sendText(command);
+		test && debugConfiguration.args.push(['-t', `"${test}"`]);
+		test && debugConfiguration.args.push(['-c', `"${config}"`]);
+
+		debug.startDebugging(undefined, debugConfiguration);
 	}
 }

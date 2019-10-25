@@ -5,6 +5,7 @@ import HoverProvider from './hovers/hover-provider';
 import { Extension, Commands } from './types';
 import TerminalProvider from './terminals/terminal-provider';
 import RunCommand from './commands/run-command';
+import DebugCommand from './commands/debug-command';
 
 export function activate(context: ExtensionContext) {
 	const editor = window.activeTextEditor;
@@ -14,6 +15,7 @@ export function activate(context: ExtensionContext) {
 	const extension: Extension = { context, document, editor, terminal, commands: {} };
 
 	extension.commands[Commands.RUN_TEST] = new RunCommand(extension);
+	extension.commands[Commands.DEBUG_TEST] = new DebugCommand(extension);
 
 	const decorator = new Decorator(extension);
 	const hoverProvider = new HoverProvider(extension);
