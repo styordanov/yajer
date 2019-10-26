@@ -1,5 +1,4 @@
-import * as path from 'path';
-import { DecorationOptions, TextEditorDecorationType, Uri, window } from 'vscode';
+import { DecorationOptions, TextEditorDecorationType, window } from 'vscode';
 import { Extension } from '../types';
 
 export default class Decorator {

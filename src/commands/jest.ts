@@ -1,21 +1,21 @@
-import * as path from 'path';
+import * as upath from 'upath';
 import { readFileSync } from 'fs';
 import { workspace } from 'vscode';
 import { URL } from 'url';
 
 export default class Jest {
-	private static WIN_PATH = 'node_modules/jest/bin/jest.js';
-	private static UNIX_PATH = 'node_modules/.bin/jest';
+	private static WIN_PATH = './node_modules/jest/bin/jest.js';
+	private static UNIX_PATH = './node_modules/.bin/jest';
 
 	private static getWorkspaceFolderPath(): string {
 		const [workspaceFolder] = workspace.workspaceFolders;
-		return workspaceFolder ? workspaceFolder.uri.path : './';
+		return workspaceFolder ? workspaceFolder.uri.fsPath : './';
 	}
 
 	static getConfigs(): string[] {
 		const CONFIG_REGEX = /jest.+--config=([a-z0-9\/.]+)/i;
 
-		const packageJSON = path.join(Jest.getWorkspaceFolderPath(), 'package.json');
+		const packageJSON = upath.join(Jest.getWorkspaceFolderPath(), 'package.json');
 		const contents = readFileSync(new URL(`file://${packageJSON}`), 'utf8');
 
 		const configs = contents.split('\n').reduce((configs, textLine) => {
@@ -29,6 +29,6 @@ export default class Jest {
 
 	static getExecutable(): string {
 		const jestPath = process.platform.includes('win32') ? Jest.WIN_PATH : Jest.UNIX_PATH;
-		return path.join(Jest.getWorkspaceFolderPath(), jestPath);
+		return upath.join(Jest.getWorkspaceFolderPath(), jestPath);
 	}
 }

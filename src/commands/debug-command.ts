@@ -1,9 +1,8 @@
-const crypto = require('crypto');
+import * as upath from 'upath';
 import { DebugConfiguration, debug } from 'vscode';
 import { Commands, Extension, CommandArgs } from '../types';
+import Jest from './jest';
 import Command from './command';
-import ConfigQuickPick from '../quickpicks/config-quickpick';
-
 export default class DebugCommand extends Command {
 	constructor(protected readonly extension: Extension) {
 		super(Commands.DEBUG_TEST);
@@ -17,10 +16,10 @@ export default class DebugCommand extends Command {
 			console: 'integratedTerminal',
 			internalConsoleOptions: 'neverOpen',
 			name: 'Debug Jest Tests',
-			program: 'jest',
+			program: Jest.getExecutable(),
 			request: 'launch',
 			type: 'node',
-			args: ['--runInBand', file]
+			args: ['--runInBand', upath.normalize(file)]
 		};
 
 		test && debugConfiguration.args.push('-t', `"${test}"`);

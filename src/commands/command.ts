@@ -30,7 +30,7 @@ export default abstract class Command implements Disposable {
 		this.disposable && this.disposable.dispose();
 	}
 
-	getMarkdownArgs<T>(args: T): string {
+	getMarkdownArgs(args: CommandArgs): string {
 		return `command:${this.command}?${encodeURIComponent(JSON.stringify(args))}`;
 	}
 
