@@ -6,6 +6,7 @@ import { Extension, Commands } from './types';
 import TerminalProvider from './terminals/terminal-provider';
 import RunCommand from './commands/run-command';
 import DebugCommand from './commands/debug-command';
+import TestsTreeDataProvider from './treeviews/tests-tree-data-provider';
 
 export function activate(context: ExtensionContext) {
 	const editor = window.activeTextEditor;
@@ -19,9 +20,11 @@ export function activate(context: ExtensionContext) {
 
 	const decorator = new Decorator(extension);
 	const hoverProvider = new HoverProvider(extension);
+	const treeViewProvider = new TestsTreeDataProvider(extension);
 
 	decorator.update();
 	hoverProvider.register();
+	treeViewProvider.register();
 
 	window.onDidChangeActiveTextEditor(
 		editor => {
@@ -29,6 +32,7 @@ export function activate(context: ExtensionContext) {
 			extension.document = new Document(editor.document);
 			decorator.update();
 			hoverProvider.register();
+			treeViewProvider.refresh();
 		},
 		null,
 		context.subscriptions
@@ -38,6 +42,7 @@ export function activate(context: ExtensionContext) {
 		event => {
 			if (extension.editor && event.document === extension.editor.document) {
 				decorator.update();
+				treeViewProvider.refresh();
 			}
 		},
 		null,

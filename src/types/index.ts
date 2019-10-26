@@ -3,9 +3,14 @@ import Document from '../documents/document';
 import TerminalProvider from '../terminals/terminal-provider';
 import Command from '../commands/command';
 
+export enum TestType {
+	TEST = 'test',
+	DESCRIBE = 'describe'
+}
 export interface Test {
 	name: string;
 	range: Range;
+	type: TestType;
 }
 
 export interface Extension {
@@ -38,4 +43,9 @@ export interface CommandMarkdown {
 export enum Commands {
 	RUN_TEST = 'yajer.run.test',
 	DEBUG_TEST = 'yajer.debug.test'
+}
+
+export interface IconPath {
+	dark: string;
+	light: string;
 }
