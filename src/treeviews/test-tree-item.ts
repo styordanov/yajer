@@ -1,5 +1,6 @@
 import { TreeItem, TreeItemCollapsibleState, ThemeIcon } from 'vscode';
-import { Test, IconPath, TestType } from '../types';
+import { Test, TestType } from '../types';
+import IconPathBuilder from '../lib/icon-path-builder';
 
 export default class TestTreeItem extends TreeItem {
 	readonly item: Test;
@@ -24,8 +25,8 @@ export default class TestTreeItem extends TreeItem {
 
 	get iconPath(): ThemeIcon {
 		return {
-			dark: '', //IconPath.build('snippet-dark.svg'),
-			light: '' //IconPath.build('snippet-light.svg')
+			dark: IconPathBuilder.build('lab-dark.svg'),
+			light: IconPathBuilder.build('lab-light.svg')
 		};
 	}
 

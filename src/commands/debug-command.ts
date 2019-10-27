@@ -1,8 +1,9 @@
 import * as upath from 'upath';
 import { DebugConfiguration, debug } from 'vscode';
 import { Commands, Extension, CommandArgs } from '../types';
-import Jest from './jest';
+import Jest from '../lib/jest';
 import Command from './command';
+
 export default class DebugCommand extends Command {
 	constructor(protected readonly extension: Extension) {
 		super(Commands.DEBUG_TEST);

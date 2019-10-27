@@ -1,6 +1,6 @@
 import * as upath from 'upath';
 import { Commands, Extension, CommandArgs } from '../types';
-import Jest from './jest';
+import Jest from '../lib/jest';
 import Command from './command';
 
 export default class RunCommand extends Command {

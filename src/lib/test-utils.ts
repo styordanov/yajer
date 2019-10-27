@@ -1,6 +1,5 @@
 import { Test, TestParent, TestType } from '../types';
 import TestTreeItem from '../treeviews/test-tree-item';
-import { Range } from 'vscode';
 
 export const last = (items: TestParent) => Object.values(items).slice(-1)[0];
 

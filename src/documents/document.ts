@@ -1,6 +1,6 @@
 import { Position, Range, TextLine, TextDocument } from 'vscode';
 import { Test, TestType } from '../types';
-import { setHierarchy } from './test-utils';
+import { setHierarchy } from '../lib/test-utils';
 
 export default class Document {
 	constructor(private readonly document: TextDocument) {}

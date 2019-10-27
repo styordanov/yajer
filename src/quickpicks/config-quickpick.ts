@@ -1,5 +1,5 @@
 import { window } from 'vscode';
-import Jest from '../commands/jest';
+import Jest from '../lib/jest';
 
 export default class ConfigQuickPick {
 	static show() {

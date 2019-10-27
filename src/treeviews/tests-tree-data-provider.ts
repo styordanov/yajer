@@ -1,7 +1,7 @@
 import { Event, EventEmitter, TreeDataProvider, TreeItem, window } from 'vscode';
 import { Extension } from '../types';
 import TestTreeItem from './test-tree-item';
-import { asTree } from '../documents/test-utils';
+import { asTree } from '../lib/test-utils';
 
 export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeItem> {
 	private items: TestTreeItem[];
