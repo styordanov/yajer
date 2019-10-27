@@ -13,7 +13,7 @@ export const setHierarchy = (tests: Test[]): Test[] => {
 	const parents: TestParent = {};
 	const orderedTests = [...tests];
 
-	orderedTests.forEach((test: Test, index: number) => {
+	orderedTests.forEach((test: Test) => {
 		const current = test.range.start.character;
 		const parent = parents[current];
 
@@ -21,7 +21,7 @@ export const setHierarchy = (tests: Test[]): Test[] => {
 
 		test.parent = parent ? tests[parent].parent : last(parents);
 
-		parents[current] = index;
+		parents[current] = test.id;
 		previous = current;
 	});
 

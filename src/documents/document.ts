@@ -22,6 +22,7 @@ export default class Document {
 
 			matches &&
 				tests.push({
+					id: tests.length,
 					name: matches[4],
 					range: new Range(new Position(range.start.line, firstNonWhitespaceCharacterIndex), range.end),
 					type: matches[1] === TestType.DESCRIBE ? TestType.DESCRIBE : TestType.TEST

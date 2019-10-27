@@ -8,6 +8,7 @@ export enum TestType {
 	DESCRIBE = 'describe'
 }
 export interface Test {
+	id: number;
 	name: string;
 	range: Range;
 	type: TestType;

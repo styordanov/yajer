@@ -14,7 +14,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TreeItem>
 
 	refresh(): void {
 		this.onDidChangeTreeDataEventEmitter.fire();
-		this.testItems = this.extension.document.getTests().map(test => new TestTreeItem(this.extension, test));
+		this.testItems = this.extension.document.getTests().map(test => new TestTreeItem(test));
 	}
 
 	getTreeItem(element: TestTreeItem): TestTreeItem {
