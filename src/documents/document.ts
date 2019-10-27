@@ -1,5 +1,6 @@
 import { Position, Range, TextLine, TextDocument } from 'vscode';
 import { Test, TestType } from '../types';
+import { setHierarchy } from './test-utils';
 
 export default class Document {
 	constructor(private readonly document: TextDocument) {}
@@ -15,7 +16,7 @@ export default class Document {
 	public getTests(): Test[] {
 		const TEST_REGEX = /(it|test|describe)(\.(skip|only))?\(['"]([^'"]+)['"],/i;
 
-		return this.getLines().reduce((tests, textLine) => {
+		const tests = this.getLines().reduce((tests, textLine) => {
 			const { firstNonWhitespaceCharacterIndex, range, text } = textLine;
 			const matches = TEST_REGEX.exec(text);
 
@@ -27,9 +28,12 @@ export default class Document {
 				} as Test);
 			return tests;
 		}, []);
+
+		return setHierarchy(tests);
 	}
 
 	public getTestOnLine(line: number): Test {
+		console.log(this.getTests());
 		return this.findTestOnLine(this.getTests(), line);
 	}
 

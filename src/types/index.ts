@@ -11,6 +11,11 @@ export interface Test {
 	name: string;
 	range: Range;
 	type: TestType;
+	parent: number;
+}
+
+export interface TestParent {
+	[name: string]: number;
 }
 
 export interface Extension {
