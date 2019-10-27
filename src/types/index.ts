@@ -8,11 +8,11 @@ export enum TestType {
 	DESCRIBE = 'describe'
 }
 export interface Test {
-	id: number;
+	id: number | undefined;
 	name: string;
 	range: Range;
 	type: TestType;
-	parent: number;
+	parent?: number;
 }
 
 export interface TestParent {

@@ -2,19 +2,20 @@ import { TreeItem, TreeItemCollapsibleState, ThemeIcon } from 'vscode';
 import { Test, IconPath, TestType } from '../types';
 
 export default class TestTreeItem extends TreeItem {
-	readonly test: Test;
+	readonly item: Test;
+	private items: TestTreeItem[] | undefined;
 
 	constructor(test: Test) {
 		super(test.name, TreeItemCollapsibleState.None);
-		this.test = test;
+		this.item = test;
 	}
 
 	get id(): string {
-		return this.test.id.toString();
+		return String(this.item.id);
 	}
 
 	get tooltip(): string {
-		return `<${this.isTest ? 'test' : 'describe'}> ${this.test.name}`;
+		return `<${this.isTest ? 'test' : 'describe'}> ${this.item.name}`;
 	}
 
 	get contextValue(): string {
@@ -29,6 +30,19 @@ export default class TestTreeItem extends TreeItem {
 	}
 
 	get isTest(): boolean {
-		return this.test.type === TestType.TEST;
+		return this.item.type === TestType.TEST;
+	}
+
+	get parentID(): string {
+		return String(this.item.parent);
+	}
+
+	set children(items: TestTreeItem[]) {
+		this.items = items;
+		!!this.items.length && (this.collapsibleState = TreeItemCollapsibleState.Expanded);
+	}
+
+	get children(): TestTreeItem[] | undefined {
+		return this.items;
 	}
 }

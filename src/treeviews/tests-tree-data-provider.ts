@@ -1,12 +1,13 @@
 import { Event, EventEmitter, TreeDataProvider, TreeItem, window } from 'vscode';
 import { Extension } from '../types';
 import TestTreeItem from './test-tree-item';
+import { asTree } from '../documents/test-utils';
 
-export default class TestsTreeDataProvider implements TreeDataProvider<TreeItem> {
-	private testItems: TestTreeItem[];
+export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeItem> {
+	private items: TestTreeItem[];
 
-	private onDidChangeTreeDataEventEmitter: EventEmitter<TreeItem | undefined> = new EventEmitter<TreeItem | undefined>();
-	readonly onDidChangeTreeData: Event<TreeItem | undefined> = this.onDidChangeTreeDataEventEmitter.event;
+	private onDidChangeTreeDataEventEmitter: EventEmitter<TestTreeItem | undefined> = new EventEmitter<TestTreeItem | undefined>();
+	readonly onDidChangeTreeData: Event<TestTreeItem | undefined> = this.onDidChangeTreeDataEventEmitter.event;
 
 	constructor(private readonly extension: Extension) {
 		this.refresh();
@@ -14,7 +15,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TreeItem>
 
 	refresh(): void {
 		this.onDidChangeTreeDataEventEmitter.fire();
-		this.testItems = this.extension.document.getTests().map(test => new TestTreeItem(test));
+		this.items = asTree(this.extension.document.getTests().map(test => new TestTreeItem(test)));
 	}
 
 	getTreeItem(element: TestTreeItem): TestTreeItem {
@@ -22,7 +23,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TreeItem>
 	}
 
 	getChildren(element?: TestTreeItem): TestTreeItem[] {
-		return element ? this.testItems : this.testItems;
+		return element ? element.children : this.items;
 	}
 
 	register() {

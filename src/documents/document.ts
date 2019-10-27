@@ -34,7 +34,6 @@ export default class Document {
 	}
 
 	public getTestOnLine(line: number): Test {
-		console.log(this.getTests());
 		return this.findTestOnLine(this.getTests(), line);
 	}
 

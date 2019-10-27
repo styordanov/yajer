@@ -1,4 +1,6 @@
-import { Test, TestParent } from '../types';
+import { Test, TestParent, TestType } from '../types';
+import TestTreeItem from '../treeviews/test-tree-item';
+import { Range } from 'vscode';
 
 export const last = (items: TestParent) => Object.values(items).slice(-1)[0];
 
@@ -26,4 +28,17 @@ export const setHierarchy = (tests: Test[]): Test[] => {
 	});
 
 	return orderedTests;
+};
+
+const defaultTreeItem: TestTreeItem = new TestTreeItem({ id: undefined, name: '', range: null, type: TestType.DESCRIBE });
+
+export const asTree = (items: TestTreeItem[], parent: TestTreeItem = defaultTreeItem, tree: TestTreeItem[] = []) => {
+	const children = items.filter(child => child.parentID === parent.id);
+
+	if (children.length > 0) {
+		parent.id === 'undefined' ? (tree = children) : (parent.children = children);
+		children.forEach(child => asTree(items, child, tree));
+	}
+
+	return tree;
 };
