@@ -1,0 +1,8 @@
+{
+	"command.run.test.last.config": "Run Test",
+	"command.run.test.force.config": "Run Test (new config)",
+	"command.run.file.last.config": "Run File",
+	"command.run.file.force.config": "Run File (new config)",
+	"command.debug.test.last.config": "Debug Test",
+	"command.debug.test.force.config": "Debug Test (new config)"
+}

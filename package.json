@@ -25,6 +25,75 @@
 					"name": "YAJER"
 				}
 			]
+		},
+		"commands": [
+			{
+				"command": "yajer.run.test.last.config",
+				"title": "%command.run.test.last.config%",
+				"icon": {
+					"dark": "/media/run-dark.svg",
+					"light": "/media/run-light.svg"
+				}
+			},
+			{
+				"command": "yajer.run.test.force.config",
+				"title": "%command.run.test.force.config%"
+			},
+			{
+				"command": "yajer.run.file.last.config",
+				"title": "%command.run.file.last.config%"
+			},
+			{
+				"command": "yajer.run.file.force.config",
+				"title": "%command.run.file.force.config%"
+			},
+			{
+				"command": "yajer.debug.test.last.config",
+				"title": "%command.debug.test.last.config%"
+			},
+			{
+				"command": "yajer.debug.test.force.config",
+				"title": "%command.debug.test.force.config%"
+			}
+		],
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "yajer.run.test.last.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "inline"
+				},
+				{
+					"command": "yajer.run.test.last.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "navigation@1"
+				},
+				{
+					"command": "yajer.run.test.force.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "navigation@2"
+				},
+				{
+					"command": "yajer.run.file.last.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "navigation@3"
+				},
+				{
+					"command": "yajer.run.file.force.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "navigation@4"
+				},
+				{
+					"command": "yajer.debug.test.last.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "navigation@5"
+				},
+				{
+					"command": "yajer.debug.test.force.config",
+					"when": "view == yajer && viewItem == test",
+					"group": "navigation@6"
+				}
+			]
 		}
 	},
 	"main": "./out/extension.js",
