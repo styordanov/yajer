@@ -4,7 +4,7 @@ import { Extension } from '../types';
 export default class Decorator {
 	private timeout: NodeJS.Timer;
 	public static decorationType: TextEditorDecorationType = window.createTextEditorDecorationType({
-		after: { margin: '0 0 0 .5rem', contentText: '►', color: '#05ce05' }
+		after: { margin: '0 0 0 .5rem', contentText: '▶', color: '#c5c5c5' }
 	});
 
 	constructor(private readonly extension: Extension) {}
