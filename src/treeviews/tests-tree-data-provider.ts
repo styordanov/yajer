@@ -4,7 +4,8 @@ import TestTreeItem from './test-tree-item';
 import { asTree } from '../lib/test-utils';
 
 export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeItem> {
-	private items: TestTreeItem[];
+	private items: TestTreeItem[] = [];
+	private subscriptions: { dispose: Function }[] = [];
 
 	private onDidChangeTreeDataEventEmitter: EventEmitter<TestTreeItem | undefined> = new EventEmitter<TestTreeItem | undefined>();
 	readonly onDidChangeTreeData: Event<TestTreeItem | undefined> = this.onDidChangeTreeDataEventEmitter.event;
@@ -17,6 +18,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 	refresh(): void {
 		this.onDidChangeTreeDataEventEmitter.fire();
 		this.items = asTree(this.extension.document.getTests().map(test => new TestTreeItem(test)));
+		this.subscribe();
 	}
 
 	getTreeItem(element: TestTreeItem): TestTreeItem {
@@ -33,6 +35,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 	}
 
 	subscribe() {
+		this.unsubscribe();
 		this.subscribeOne(ContextCommands.RUN_TEST_LAST_CONFIG, Commands.RUN_TEST, {});
 		this.subscribeOne(ContextCommands.RUN_TEST_FORCE_CONFIG, Commands.RUN_TEST, { context: null });
 		this.subscribeOne(ContextCommands.RUN_FILE_LAST_CONFIG, Commands.RUN_TEST, { forceConfig: true });
@@ -46,6 +49,13 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 		const subscriptions = this.extension.context.subscriptions;
 
 		const args = { file: this.extension.editor.document.fileName, ...params };
-		subscriptions.push(commands.registerCommand(contextCommand, (context = this) => ecommands[command].execute({ ...args, context })));
+		const disposable = commands.registerCommand(contextCommand, (context = this) => ecommands[command].execute({ ...args, context }));
+
+		subscriptions.push(disposable);
+		this.subscriptions.push(disposable);
+	}
+
+	private unsubscribe() {
+		this.subscriptions.forEach(subscription => subscription.dispose());
 	}
 }
