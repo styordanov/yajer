@@ -35,7 +35,7 @@ export default abstract class Command implements Disposable {
 	}
 
 	getMarkdown(command: CommandMarkdown, args: CommandArgs): string {
-		return `[\`${command.title}\`](${this.getMarkdownArgs(args)} "${command.description}")`;
+		return `[${command.title}](${this.getMarkdownArgs(args)} "${command.description}")`;
 	}
 
 	abstract execute(args: unknown): unknown;

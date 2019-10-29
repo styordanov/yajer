@@ -19,30 +19,36 @@ export default class HoverMessage {
 	}
 
 	private getRunTestMarkdown(args: CommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown({ title: '▶', description: 'Run current test with last known config' }, args);
+		return this.getRunCommandMarkdown({ title: 'Run Test', description: 'Run current test with last known config' }, args);
 	}
 
 	private getRunFileMarkdown(args: CommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown({ title: '▶▶', description: 'Run current file with last known config' }, { ...args, test: undefined });
+		return this.getRunCommandMarkdown({ title: 'Run File', description: 'Run current file with last known config' }, { ...args, test: undefined });
 	}
 
 	private getRunTestConfigMarkdown(args: CommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown({ title: '▷', description: 'Run current test with new config' }, { ...args, forceConfig: true });
+		return this.getRunCommandMarkdown(
+			{ title: 'Run Test (new config)', description: 'Run current test with new config' },
+			{ ...args, forceConfig: true }
+		);
 	}
 
 	private getRunFileConfigMarkdown(args: CommandArgs): MarkdownString {
 		return this.getRunCommandMarkdown(
-			{ title: '▷▷', description: 'Run current file with new config' },
+			{ title: 'Run File (new config)', description: 'Run current file with new config' },
 			{ ...args, test: undefined, forceConfig: true }
 		);
 	}
 
 	private getDebugTestMarkdown(args: CommandArgs): MarkdownString {
-		return this.getDebugCommandMarkdown({ title: '◆', description: 'Debug current test with last known config' }, args);
+		return this.getDebugCommandMarkdown({ title: 'Debug Test', description: 'Debug current test with last known config' }, args);
 	}
 
 	private getDebugTestConfigMarkdown(args: CommandArgs): MarkdownString {
-		return this.getRunCommandMarkdown({ title: '◇', description: 'Debug current test with new config' }, { ...args, forceConfig: true });
+		return this.getRunCommandMarkdown(
+			{ title: 'Debug Test (new config)', description: 'Debug current test with new config' },
+			{ ...args, forceConfig: true }
+		);
 	}
 
 	public getMessage(args: CommandArgs): MarkdownString {
@@ -57,11 +63,13 @@ export default class HoverMessage {
 		const message = [
 			runTestCommandMarkdown.value,
 			runTestCommandConfigMarkdown.value,
+			'***',
 			runFileCommandMarkdown.value,
 			runFileCommandConfigMarkdown.value,
+			'***',
 			debugTestCommandMarkdown.value,
-			debugTestCommandConfigMarkdown.value
-		].join(' ');
+			debugTestCommandConfigMarkdown.value,
+		].join('  \n');
 
 		const markdown = new MarkdownString(message);
 		markdown.isTrusted = true;
