@@ -7,8 +7,10 @@ export default class Document {
 
 	public getLines(): TextLine[] {
 		const lines = [];
-		for (let i = 0; i < this.document.lineCount; i++) {
-			lines.push(this.document.lineAt(i));
+		if (this.document) {
+			for (let i = 0; i < this.document.lineCount; i++) {
+				lines.push(this.document.lineAt(i));
+			}
 		}
 		return lines;
 	}

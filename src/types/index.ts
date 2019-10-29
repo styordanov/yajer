@@ -2,6 +2,7 @@ import { Range, ExtensionContext, TextEditor } from 'vscode';
 import Document from '../documents/document';
 import TerminalProvider from '../terminals/terminal-provider';
 import Command from '../commands/command';
+import TestTreeItem from '../treeviews/test-tree-item';
 
 export enum TestType {
 	TEST = 'test',
@@ -35,6 +36,7 @@ export interface CommandArgs {
 	file: string;
 	test?: string;
 	forceConfig?: boolean;
+	context?: TestTreeItem;
 }
 
 export interface CommandConfigs {

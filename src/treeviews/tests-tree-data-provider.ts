@@ -33,14 +33,19 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 	}
 
 	subscribe() {
+		this.subscribeOne(ContextCommands.RUN_TEST_LAST_CONFIG, Commands.RUN_TEST, {});
+		this.subscribeOne(ContextCommands.RUN_TEST_FORCE_CONFIG, Commands.RUN_TEST, { context: null });
+		this.subscribeOne(ContextCommands.RUN_FILE_LAST_CONFIG, Commands.RUN_TEST, { forceConfig: true });
+		this.subscribeOne(ContextCommands.RUN_FILE_FORCE_CONFIG, Commands.RUN_TEST, { context: null, forceConfig: true });
+		this.subscribeOne(ContextCommands.DEBUG_TEST_LAST_CONFIG, Commands.DEBUG_TEST, {});
+		this.subscribeOne(ContextCommands.DEBUG_TEST_FORCE_CONFIG, Commands.DEBUG_TEST, { forceConfig: true });
+	}
+
+	private subscribeOne(contextCommand: ContextCommands, command: Commands, params: Object) {
 		const ecommands = this.extension.commands;
 		const subscriptions = this.extension.context.subscriptions;
 
-		subscriptions.push(commands.registerCommand(ContextCommands.RUN_TEST_LAST_CONFIG, ecommands[Commands.RUN_TEST].execute, this));
-		subscriptions.push(commands.registerCommand(ContextCommands.RUN_TEST_FORCE_CONFIG, ecommands[Commands.RUN_TEST].execute, this));
-		subscriptions.push(commands.registerCommand(ContextCommands.RUN_FILE_LAST_CONFIG, ecommands[Commands.RUN_TEST].execute, this));
-		subscriptions.push(commands.registerCommand(ContextCommands.RUN_FILE_FORCE_CONFIG, ecommands[Commands.RUN_TEST].execute, this));
-		subscriptions.push(commands.registerCommand(ContextCommands.DEBUG_TEST_LAST_CONFIG, ecommands[Commands.DEBUG_TEST].execute, this));
-		subscriptions.push(commands.registerCommand(ContextCommands.DEBUG_TEST_FORCE_CONFIG, ecommands[Commands.DEBUG_TEST].execute, this));
+		const args = { file: this.extension.editor.document.fileName, ...params };
+		subscriptions.push(commands.registerCommand(contextCommand, (context = this) => ecommands[command].execute({ ...args, context })));
 	}
 }

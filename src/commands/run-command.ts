@@ -9,8 +9,10 @@ export default class RunCommand extends Command {
 	}
 
 	async execute(args: CommandArgs) {
-		const { file, test, forceConfig } = args;
+		const { file, forceConfig, context } = args;
 		const config = await this.getConfig(file, forceConfig);
+
+		const test = context ? context.item.name : args.test;
 
 		let command = `node ${Jest.getExecutable()} ${upath.normalize(file)}`;
 		test && (command = `${command} -t "${test}"`);
