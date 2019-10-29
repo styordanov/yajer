@@ -24,9 +24,10 @@ export default class TestTreeItem extends TreeItem {
 	}
 
 	get iconPath(): ThemeIcon {
+		const icon = this.isTest ? 'test.svg' : 'describe.svg';
 		return {
-			dark: IconPathBuilder.build('lab-dark.svg'),
-			light: IconPathBuilder.build('lab-light.svg')
+			dark: IconPathBuilder.build(icon),
+			light: IconPathBuilder.build(icon)
 		};
 	}
 
