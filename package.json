@@ -3,10 +3,13 @@
 	"displayName": "YAJER",
 	"description": "Yet Another Jest Runner",
 	"publisher": "styordanov",
+	"author": "Stoyan Yordanov",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/styordanov/yajer.git"
 	},
+	"license": "MIT",
+	"icon": "media/icon.png",
 	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.39.0"
