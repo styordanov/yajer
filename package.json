@@ -71,27 +71,27 @@
 				{
 					"command": "yajer.run.test.force.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "navigation@2"
+					"group": "1_modification@1"
 				},
 				{
 					"command": "yajer.run.file.last.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "navigation@3"
+					"group": "navigation@2"
 				},
 				{
 					"command": "yajer.run.file.force.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "navigation@4"
+					"group": "1_modification@2"
 				},
 				{
 					"command": "yajer.debug.test.last.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "navigation@5"
+					"group": "z_commands@1"
 				},
 				{
 					"command": "yajer.debug.test.force.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "navigation@6"
+					"group": "z_commands@2"
 				}
 			]
 		}
