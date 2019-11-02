@@ -34,8 +34,8 @@
 				"command": "yajer.run.test.last.config",
 				"title": "%command.run.test.last.config%",
 				"icon": {
-					"dark": "/media/run-dark.svg",
-					"light": "/media/run-light.svg"
+					"dark": "/media/continue-dark.svg",
+					"light": "/media/continue-light.svg"
 				}
 			},
 			{
@@ -44,7 +44,11 @@
 			},
 			{
 				"command": "yajer.run.file.last.config",
-				"title": "%command.run.file.last.config%"
+				"title": "%command.run.file.last.config%",
+				"icon": {
+					"dark": "/media/continue-dark.svg",
+					"light": "/media/continue-light.svg"
+				}
 			},
 			{
 				"command": "yajer.run.file.force.config",
@@ -52,7 +56,11 @@
 			},
 			{
 				"command": "yajer.debug.test.last.config",
-				"title": "%command.debug.test.last.config%"
+				"title": "%command.debug.test.last.config%",
+				"icon": {
+					"dark": "/media/debug-dark.svg",
+					"light": "/media/debug-light.svg"
+				}
 			},
 			{
 				"command": "yajer.debug.test.force.config",
@@ -60,10 +68,26 @@
 			},
 			{
 				"command": "yajer.config.reset",
-				"title": "%command.config.reset%"
+				"title": "%command.config.reset%",
+				"icon": {
+					"dark": "/media/restart-dark.svg",
+					"light": "/media/restart-light.svg"
+				}
 			}
 		],
 		"menus": {
+			"view/title": [
+				{
+					"command": "yajer.run.file.last.config",
+					"when": "view == yajer",
+					"group": "navigation"
+				},
+				{
+					"command": "yajer.config.reset",
+					"when": "view == yajer",
+					"group": "navigation"
+				}
+			],
 			"view/item/context": [
 				{
 					"command": "yajer.run.test.last.config",
