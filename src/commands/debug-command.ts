@@ -10,8 +10,8 @@ export default class DebugCommand extends Command {
 	}
 
 	async execute(args: CommandArgs) {
-		const { file, test, forceConfig } = args;
-		const config = await this.getConfig(file, forceConfig);
+		const { file, test } = args;
+		const config = await this.getConfig(file);
 
 		const debugConfiguration: DebugConfiguration = {
 			console: 'integratedTerminal',
@@ -23,8 +23,8 @@ export default class DebugCommand extends Command {
 			args: ['--runInBand', upath.normalize(file)]
 		};
 
-		test && debugConfiguration.args.push('-t', `"${test}"`);
-		test && debugConfiguration.args.push('-c', `"${config}"`);
+		test && debugConfiguration.args.push('-t', test);
+		config && debugConfiguration.args.push('-c', config);
 
 		debug.startDebugging(undefined, debugConfiguration);
 	}

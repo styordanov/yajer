@@ -35,7 +35,6 @@ export interface ExtensionCommands {
 export interface CommandArgs {
 	file: string;
 	test?: string;
-	forceConfig?: boolean;
 	context?: TestTreeItem;
 }
 
@@ -51,13 +50,10 @@ export enum Commands {
 }
 
 export enum ContextCommands {
-	CONFIG_FILE_RESET = 'yajer.config.reset',
-	RUN_TEST_LAST_CONFIG = 'yajer.run.test.last.config',
-	RUN_TEST_FORCE_CONFIG = 'yajer.run.test.force.config',
-	RUN_FILE_LAST_CONFIG = 'yajer.run.file.last.config',
-	RUN_FILE_FORCE_CONFIG = 'yajer.run.file.force.config',
-	DEBUG_TEST_LAST_CONFIG = 'yajer.debug.test.last.config',
-	DEBUG_TEST_FORCE_CONFIG = 'yajer.debug.test.force.config'
+	RUN_TEST = 'yajer.run.test.context',
+	RUN_FILE = 'yajer.run.file.context',
+	DEBUG_TEST = 'yajer.debug.test.context',
+	CONFIG_TEST = 'yajer.config.reset.context'
 }
 
 export interface IconPath {

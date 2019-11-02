@@ -9,8 +9,8 @@ export default class RunCommand extends Command {
 	}
 
 	async execute(args: CommandArgs) {
-		const { file, forceConfig, context } = args;
-		const config = await this.getConfig(file, forceConfig);
+		const { file, context } = args;
+		const config = await this.getConfig(file);
 
 		const test = context ? context.item.name : args.test;
 

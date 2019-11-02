@@ -22,11 +22,9 @@ export default abstract class Command implements Disposable {
 		Command.configs.delete(this.generateHash(file));
 	}
 
-	protected async getConfig(file: string, forceConfig: boolean): Promise<string> {
+	protected async getConfig(file: string): Promise<string> {
 		const hash = this.generateHash(file);
-		if (forceConfig || !Command.configs.has(hash)) {
-			Command.configs.set(hash, await ConfigQuickPick.show());
-		}
+		!Command.configs.has(hash) && Command.configs.set(hash, await ConfigQuickPick.show());
 		return Command.configs.get(hash);
 	}
 

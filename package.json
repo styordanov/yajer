@@ -31,44 +31,32 @@
 		},
 		"commands": [
 			{
-				"command": "yajer.run.test.last.config",
-				"title": "%command.run.test.last.config%",
+				"command": "yajer.run.test.context",
+				"title": "%command.run.test.title%",
 				"icon": {
 					"dark": "/media/continue-dark.svg",
 					"light": "/media/continue-light.svg"
 				}
 			},
 			{
-				"command": "yajer.run.test.force.config",
-				"title": "%command.run.test.force.config%"
-			},
-			{
-				"command": "yajer.run.file.last.config",
-				"title": "%command.run.file.last.config%",
+				"command": "yajer.run.file.context",
+				"title": "%command.run.file.title%",
 				"icon": {
 					"dark": "/media/continue-dark.svg",
 					"light": "/media/continue-light.svg"
 				}
 			},
 			{
-				"command": "yajer.run.file.force.config",
-				"title": "%command.run.file.force.config%"
-			},
-			{
-				"command": "yajer.debug.test.last.config",
-				"title": "%command.debug.test.last.config%",
+				"command": "yajer.debug.test.context",
+				"title": "%command.debug.test.title%",
 				"icon": {
 					"dark": "/media/debug-dark.svg",
 					"light": "/media/debug-light.svg"
 				}
 			},
 			{
-				"command": "yajer.debug.test.force.config",
-				"title": "%command.debug.test.force.config%"
-			},
-			{
-				"command": "yajer.config.reset",
-				"title": "%command.config.reset%",
+				"command": "yajer.config.reset.context",
+				"title": "%command.config.reset.title%",
 				"icon": {
 					"dark": "/media/restart-dark.svg",
 					"light": "/media/restart-light.svg"
@@ -78,56 +66,41 @@
 		"menus": {
 			"view/title": [
 				{
-					"command": "yajer.run.file.last.config",
+					"command": "yajer.run.file.context",
 					"when": "view == yajer",
 					"group": "navigation"
 				},
 				{
-					"command": "yajer.config.reset",
+					"command": "yajer.config.reset.context",
 					"when": "view == yajer",
 					"group": "navigation"
 				}
 			],
 			"view/item/context": [
 				{
-					"command": "yajer.run.test.last.config",
+					"command": "yajer.run.test.context",
 					"when": "view == yajer && viewItem == test",
 					"group": "inline"
 				},
 				{
-					"command": "yajer.run.test.last.config",
+					"command": "yajer.run.test.context",
 					"when": "view == yajer && viewItem == test",
 					"group": "navigation@1"
 				},
 				{
-					"command": "yajer.run.test.force.config",
+					"command": "yajer.run.file.context",
 					"when": "view == yajer && viewItem == test",
 					"group": "navigation@2"
 				},
 				{
-					"command": "yajer.run.file.last.config",
+					"command": "yajer.debug.test.context",
 					"when": "view == yajer && viewItem == test",
-					"group": "1_modification@1"
+					"group": "navigation@3"
 				},
 				{
-					"command": "yajer.run.file.force.config",
-					"when": "view == yajer && viewItem == test",
-					"group": "1_modification@2"
-				},
-				{
-					"command": "yajer.debug.test.last.config",
+					"command": "yajer.config.reset.context",
 					"when": "view == yajer && viewItem == test",
 					"group": "z_commands@1"
-				},
-				{
-					"command": "yajer.debug.test.force.config",
-					"when": "view == yajer && viewItem == test",
-					"group": "z_commands@2"
-				},
-				{
-					"command": "yajer.config.reset",
-					"when": "view == yajer && viewItem == test",
-					"group": "z_commands@3"
 				}
 			]
 		}
