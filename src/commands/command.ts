@@ -1,10 +1,10 @@
 import * as crypto from 'crypto';
 import { Disposable, commands } from 'vscode';
-import { Commands, CommandConfigs, CommandMarkdown, CommandArgs } from '../types';
+import { Commands, CommandMarkdown, CommandArgs } from '../types';
 import ConfigQuickPick from '../quickpicks/config-quickpick';
 
 export default abstract class Command implements Disposable {
-	static configs: CommandConfigs = {};
+	static configs: Map<string, string> = new Map();
 	private disposable: Disposable;
 
 	constructor(protected readonly command: Commands) {
@@ -18,12 +18,16 @@ export default abstract class Command implements Disposable {
 			.digest('hex');
 	}
 
+	protected removeConfig(file: string) {
+		Command.configs.delete(this.generateHash(file));
+	}
+
 	protected async getConfig(file: string, forceConfig: boolean): Promise<string> {
 		const hash = this.generateHash(file);
-		if (forceConfig || !Command.configs[hash]) {
-			Command.configs[hash] = await ConfigQuickPick.show();
+		if (forceConfig || !Command.configs.has(hash)) {
+			Command.configs.set(hash, await ConfigQuickPick.show());
 		}
-		return Command.configs[hash];
+		return Command.configs.get(hash);
 	}
 
 	dispose() {

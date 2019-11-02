@@ -57,6 +57,10 @@
 			{
 				"command": "yajer.debug.test.force.config",
 				"title": "%command.debug.test.force.config%"
+			},
+			{
+				"command": "yajer.config.reset",
+				"title": "%command.config.reset%"
 			}
 		],
 		"menus": {
@@ -74,12 +78,12 @@
 				{
 					"command": "yajer.run.test.force.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "1_modification@1"
+					"group": "navigation@2"
 				},
 				{
 					"command": "yajer.run.file.last.config",
 					"when": "view == yajer && viewItem == test",
-					"group": "navigation@2"
+					"group": "1_modification@1"
 				},
 				{
 					"command": "yajer.run.file.force.config",
@@ -95,6 +99,11 @@
 					"command": "yajer.debug.test.force.config",
 					"when": "view == yajer && viewItem == test",
 					"group": "z_commands@2"
+				},
+				{
+					"command": "yajer.config.reset",
+					"when": "view == yajer && viewItem == test",
+					"group": "z_commands@3"
 				}
 			]
 		}

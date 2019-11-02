@@ -18,6 +18,13 @@ export default class HoverMessage {
 		return markdown;
 	}
 
+	private getConfigCommandMarkdown(command: CommandMarkdown, args: CommandArgs): MarkdownString {
+		const configCommand = this.extension.commands[Commands.CONFIG_TEST];
+		const markdown = new MarkdownString(configCommand.getMarkdown(command, args));
+		markdown.isTrusted = true;
+		return markdown;
+	}
+
 	private getRunTestMarkdown(args: CommandArgs): MarkdownString {
 		return this.getRunCommandMarkdown({ title: 'Run Test', description: 'Run current test with last known config' }, args);
 	}
@@ -51,6 +58,10 @@ export default class HoverMessage {
 		);
 	}
 
+	private getConfigTestMarkdown(args: CommandArgs): MarkdownString {
+		return this.getConfigCommandMarkdown({ title: 'Reset Config', description: 'Reset current file config' }, args);
+	}
+
 	public getMessage(args: CommandArgs): MarkdownString {
 		const runTestCommandMarkdown = this.getRunTestMarkdown(args);
 		const runFileCommandMarkdown = this.getRunFileMarkdown(args);
@@ -59,6 +70,8 @@ export default class HoverMessage {
 
 		const debugTestCommandMarkdown = this.getDebugTestMarkdown(args);
 		const debugTestCommandConfigMarkdown = this.getDebugTestConfigMarkdown(args);
+
+		const configTestCommandMarkdown = this.getConfigTestMarkdown(args);
 
 		const message = [
 			runTestCommandMarkdown.value,
@@ -69,6 +82,8 @@ export default class HoverMessage {
 			'***',
 			debugTestCommandMarkdown.value,
 			debugTestCommandConfigMarkdown.value,
+			'***',
+			configTestCommandMarkdown.value
 		].join('  \n');
 
 		const markdown = new MarkdownString(message);

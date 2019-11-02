@@ -36,6 +36,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 
 	subscribe() {
 		this.unsubscribe();
+		this.subscribeOne(ContextCommands.CONFIG_FILE_RESET, Commands.CONFIG_TEST, {});
 		this.subscribeOne(ContextCommands.RUN_TEST_LAST_CONFIG, Commands.RUN_TEST, {});
 		this.subscribeOne(ContextCommands.RUN_TEST_FORCE_CONFIG, Commands.RUN_TEST, { context: null });
 		this.subscribeOne(ContextCommands.RUN_FILE_LAST_CONFIG, Commands.RUN_TEST, { forceConfig: true });

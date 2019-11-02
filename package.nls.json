@@ -4,5 +4,6 @@
 	"command.run.file.last.config": "Run File",
 	"command.run.file.force.config": "Run File (new config)",
 	"command.debug.test.last.config": "Debug Test",
-	"command.debug.test.force.config": "Debug Test (new config)"
+	"command.debug.test.force.config": "Debug Test (new config)",
+	"command.config.reset": "Reset Config for Current File"
 }

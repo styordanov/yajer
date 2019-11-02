@@ -6,6 +6,7 @@ import { Extension, Commands } from './types';
 import TerminalProvider from './terminals/terminal-provider';
 import RunCommand from './commands/run-command';
 import DebugCommand from './commands/debug-command';
+import ConfigCommand from './commands/config-command';
 import TestsTreeDataProvider from './treeviews/tests-tree-data-provider';
 
 export function activate(context: ExtensionContext) {
@@ -17,6 +18,7 @@ export function activate(context: ExtensionContext) {
 
 	extension.commands[Commands.RUN_TEST] = new RunCommand(extension);
 	extension.commands[Commands.DEBUG_TEST] = new DebugCommand(extension);
+	extension.commands[Commands.CONFIG_TEST] = new ConfigCommand(extension);
 
 	const decorator = new Decorator(extension);
 	const hoverProvider = new HoverProvider(extension);

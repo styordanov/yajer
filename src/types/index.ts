@@ -39,10 +39,6 @@ export interface CommandArgs {
 	context?: TestTreeItem;
 }
 
-export interface CommandConfigs {
-	[key: string]: string;
-}
-
 export interface CommandMarkdown {
 	title: string;
 	description?: string;
@@ -50,10 +46,12 @@ export interface CommandMarkdown {
 
 export enum Commands {
 	RUN_TEST = 'yajer.run.test',
-	DEBUG_TEST = 'yajer.debug.test'
+	DEBUG_TEST = 'yajer.debug.test',
+	CONFIG_TEST = 'yajer.config.test'
 }
 
 export enum ContextCommands {
+	CONFIG_FILE_RESET = 'yajer.config.reset',
 	RUN_TEST_LAST_CONFIG = 'yajer.run.test.last.config',
 	RUN_TEST_FORCE_CONFIG = 'yajer.run.test.force.config',
 	RUN_FILE_LAST_CONFIG = 'yajer.run.file.last.config',
