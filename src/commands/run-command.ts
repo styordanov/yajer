@@ -14,7 +14,7 @@ export default class RunCommand extends Command {
 
 		const test = context ? context.item.name : args.test;
 
-		let command = `node ${Jest.getExecutable()} ${upath.normalize(file)}`;
+		let command = `${Jest.getCommand()} ${upath.normalize(file)}`;
 		test && (command = `${command} -t "${test}"`);
 		config && (command = `${command} -c "${config}"`);
 

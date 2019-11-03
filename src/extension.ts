@@ -1,8 +1,9 @@
 import { ExtensionContext, window, workspace } from 'vscode';
+import { Extension, Commands } from './types';
+import Jest from './lib/jest';
 import Document from './documents/document';
 import Decorator from './decorators/decorator';
 import HoverProvider from './hovers/hover-provider';
-import { Extension, Commands } from './types';
 import TerminalProvider from './terminals/terminal-provider';
 import RunCommand from './commands/run-command';
 import DebugCommand from './commands/debug-command';
@@ -28,6 +29,8 @@ export function activate(context: ExtensionContext) {
 	hoverProvider.register();
 	treeViewProvider.register();
 
+	Jest.getConfigs();
+
 	window.onDidChangeActiveTextEditor(
 		editor => {
 			extension.editor = editor;
@@ -50,6 +53,10 @@ export function activate(context: ExtensionContext) {
 		null,
 		context.subscriptions
 	);
+
+	workspace.onDidChangeConfiguration(event => {
+		event.affectsConfiguration('yajer.jestConfigPatterns') && Jest.getConfigs(true);
+	});
 }
 
 // this method is called when your extension is deactivated

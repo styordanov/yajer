@@ -29,6 +29,31 @@
 				}
 			]
 		},
+		"configuration": [
+			{
+				"title": "Yet Another Jest Runner",
+				"properties": {
+					"yajer.jestCommand": {
+						"type": "string",
+						"default": "",
+						"markdownDescription": "If left empty the extension will run the jest bin from `${workspaceFolder}/node_modules`",
+						"scope": "window"
+					},
+					"yajer.jestConfig": {
+						"type": "string",
+						"default": "",
+						"markdownDescription": "Jest config path, relative to `${workspaceFolder}`, e.g. `jest.config.json`. If left empty the extension will scan recursively `${workspaceFolder}` based on the patterns provided",
+						"scope": "window"
+					},
+					"yajer.jestConfigPatterns": {
+						"type": "string",
+						"default": "",
+						"markdownDescription": "Comma-separated jest config file patterns. Please note that `jest.config.j`s and `jest.config.json` are included by default",
+						"scope": "window"
+					}
+				}
+			}
+		],
 		"commands": [
 			{
 				"command": "yajer.run.test.context",

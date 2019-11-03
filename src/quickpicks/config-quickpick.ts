@@ -3,6 +3,7 @@ import Jest from '../lib/jest';
 
 export default class ConfigQuickPick {
 	static show() {
-		return window.showQuickPick(Jest.getConfigs());
+		const configs: string[] = Jest.getConfigs() || [];
+		return configs.length <= 1 ? configs.pop() : window.showQuickPick(Jest.getConfigs());
 	}
 }

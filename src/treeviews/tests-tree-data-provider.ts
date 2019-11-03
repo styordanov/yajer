@@ -43,10 +43,11 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 	}
 
 	private subscribeOne(contextCommand: ContextCommands, command: Commands, params: Object) {
+		const editor = this.extension.editor;
 		const ecommands = this.extension.commands;
 		const subscriptions = this.extension.context.subscriptions;
 
-		const args = { file: this.extension.editor.document.fileName, ...params };
+		const args = { file: editor && editor.document.fileName, ...params };
 		const disposable = commands.registerCommand(contextCommand, (context = this) => ecommands[command].execute({ ...args, context }));
 
 		subscriptions.push(disposable);
