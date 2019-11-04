@@ -2,6 +2,11 @@
 
 All notable changes to the "YAJER" extension will be documented in this file.
 
+## [0.1.1]
+
+- Added configuration settings
+- Added deep scan for configuration files
+
 ## [0.1.0]
 
 - Added TreeView
