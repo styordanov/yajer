@@ -16,7 +16,7 @@ export default class TestTreeItem extends TreeItem {
 	}
 
 	get tooltip(): string {
-		return `<${this.isTest ? 'test' : 'describe'}> ${this.item.name}`;
+		return `${this.isTest ? 'test' : 'describe'}('${this.item.name}')`;
 	}
 
 	get contextValue(): string {

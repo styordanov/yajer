@@ -34,10 +34,10 @@ export default class HoverMessage {
 
 	private getDebugTestMarkdown(args: CommandArgs): MarkdownString {
 		return this.getCommandMarkdown(
-			Commands.DEBUG_TEST,
+			Commands.DEBUG_FILE,
 			{
-				title: 'Debug Test',
-				description: 'Debug current test with last known config'
+				title: 'Debug FIle',
+				description: 'Debug current file with last known config'
 			},
 			{ ...args }
 		);
@@ -45,7 +45,7 @@ export default class HoverMessage {
 
 	private getConfigTestMarkdown(args: CommandArgs): MarkdownString {
 		return this.getCommandMarkdown(
-			Commands.CONFIG_TEST,
+			Commands.CONFIG_FILE,
 			{
 				title: 'Reset Config',
 				description: 'Reset configuration for current file'

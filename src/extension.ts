@@ -18,8 +18,8 @@ export function activate(context: ExtensionContext) {
 	const extension: Extension = { context, document, editor, terminal, commands: {} };
 
 	extension.commands[Commands.RUN_TEST] = new RunCommand(extension);
-	extension.commands[Commands.DEBUG_TEST] = new DebugCommand(extension);
-	extension.commands[Commands.CONFIG_TEST] = new ConfigCommand(extension);
+	extension.commands[Commands.DEBUG_FILE] = new DebugCommand(extension);
+	extension.commands[Commands.CONFIG_FILE] = new ConfigCommand(extension);
 
 	const decorator = new Decorator(extension);
 	const hoverProvider = new HoverProvider(extension);

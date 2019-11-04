@@ -72,8 +72,8 @@
 				}
 			},
 			{
-				"command": "yajer.debug.test.context",
-				"title": "%command.debug.test.title%",
+				"command": "yajer.debug.file.context",
+				"title": "%command.debug.file.title%",
 				"icon": {
 					"dark": "/media/debug-dark.svg",
 					"light": "/media/debug-light.svg"
@@ -93,12 +93,17 @@
 				{
 					"command": "yajer.run.file.context",
 					"when": "view == yajer",
-					"group": "navigation"
+					"group": "navigation@1"
+				},
+				{
+					"command": "yajer.debug.file.context",
+					"when": "view == yajer",
+					"group": "navigation@2"
 				},
 				{
 					"command": "yajer.config.reset.context",
 					"when": "view == yajer",
-					"group": "navigation"
+					"group": "navigation@3"
 				}
 			],
 			"view/item/context": [
@@ -116,11 +121,6 @@
 					"command": "yajer.run.file.context",
 					"when": "view == yajer && viewItem == test",
 					"group": "navigation@2"
-				},
-				{
-					"command": "yajer.debug.test.context",
-					"when": "view == yajer && viewItem == test",
-					"group": "navigation@3"
 				},
 				{
 					"command": "yajer.config.reset.context",

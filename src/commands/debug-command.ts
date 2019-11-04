@@ -6,7 +6,7 @@ import Command from './command';
 
 export default class DebugCommand extends Command {
 	constructor(protected readonly extension: Extension) {
-		super(Commands.DEBUG_TEST);
+		super(Commands.DEBUG_FILE);
 	}
 
 	async execute(args: CommandArgs) {
@@ -14,17 +14,15 @@ export default class DebugCommand extends Command {
 		const config = await this.getConfig(file);
 
 		const debugConfiguration: DebugConfiguration = {
-			console: 'integratedTerminal',
-			internalConsoleOptions: 'neverOpen',
+			type: 'node',
+			request: 'launch',
 			name: 'Debug Jest Tests',
 			program: Jest.getExecutable(),
-			request: 'launch',
-			type: 'node',
-			args: ['--runInBand', upath.normalize(file)]
+			args: [upath.normalize(file), '--config', config],
+			console: 'integratedTerminal',
+			internalConsoleOptions: 'neverOpen',
+			disableOptimisticBPs: true
 		};
-
-		test && debugConfiguration.args.push('-t', test);
-		config && debugConfiguration.args.push('-c', config);
 
 		debug.startDebugging(undefined, debugConfiguration);
 	}

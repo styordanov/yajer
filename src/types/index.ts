@@ -45,15 +45,15 @@ export interface CommandMarkdown {
 
 export enum Commands {
 	RUN_TEST = 'yajer.run.test',
-	DEBUG_TEST = 'yajer.debug.test',
-	CONFIG_TEST = 'yajer.config.test'
+	DEBUG_FILE = 'yajer.debug.file',
+	CONFIG_FILE = 'yajer.config.file'
 }
 
 export enum ContextCommands {
 	RUN_TEST = 'yajer.run.test.context',
 	RUN_FILE = 'yajer.run.file.context',
-	DEBUG_TEST = 'yajer.debug.test.context',
-	CONFIG_TEST = 'yajer.config.reset.context'
+	DEBUG_FILE = 'yajer.debug.file.context',
+	CONFIG_FILE = 'yajer.config.reset.context'
 }
 
 export interface IconPath {

@@ -5,12 +5,12 @@ import { window } from 'vscode';
 
 export default class ConfigCommand extends Command {
 	constructor(protected readonly extension: Extension) {
-		super(Commands.CONFIG_TEST);
+		super(Commands.CONFIG_FILE);
 	}
 
 	execute(args: CommandArgs) {
 		const { file } = args;
 		this.removeConfig(file);
-		window.showInformationMessage(`Config reset for ${path.basename(file)}`);
+		window.showInformationMessage(`Configuration reset for ${path.basename(file)}`);
 	}
 }
