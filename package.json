@@ -10,7 +10,7 @@
 	},
 	"license": "MIT",
 	"icon": "media/icon.png",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
@@ -25,7 +25,8 @@
 			"explorer": [
 				{
 					"id": "yajer",
-					"name": "YAJER"
+					"name": "Yet Another Jest Runner",
+					"when": "hasTestsInView"
 				}
 			]
 		},
@@ -150,6 +151,7 @@
 		"vscode-test": "^1.2.0"
 	},
 	"dependencies": {
-		"upath": "^1.2.0"
+		"upath": "^1.2.0",
+		"glob": "^7.1.4"
 	}
 }
