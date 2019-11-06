@@ -6,5 +6,8 @@
 	"command.debug.file.title": "Debug File",
 	"command.debug.file.description": "Debug current file with last known config",
 	"command.config.reset.title": "Reset configuration for current file",
-	"command.config.reset.description": "Reset configuration for current file"
+	"command.config.reset.description": "Reset configuration for current file",
+	"configuration.jest.command.description": "If left empty the extension will run the jest bin from `${workspaceFolder}/node_modules`",
+	"configuration.jest.config.description": "Jest config path, relative to `${workspaceFolder}`, e.g. `jest.config.json`. If left empty the extension will scan recursively `${workspaceFolder}` based on the patterns provided",
+	"configuration.jest.config.patterns.description": "Comma-separated jest config file patterns. Please note that `jest.config.j`s and `jest.config.json` are included by default"
 }
