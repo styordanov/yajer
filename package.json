@@ -84,8 +84,8 @@
 				"command": "yajer.config.reset.context",
 				"title": "%command.config.reset.title%",
 				"icon": {
-					"dark": "/media/restart-dark.svg",
-					"light": "/media/restart-light.svg"
+					"dark": "/media/clear-dark.svg",
+					"light": "/media/clear-light.svg"
 				}
 			}
 		],
