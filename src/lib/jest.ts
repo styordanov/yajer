@@ -37,7 +37,7 @@ export default class Jest {
 
 		const defaultPatterns = ['jest.config.js', 'jest.config.json'];
 		const configPatterns: string = workspace.getConfiguration().get('yajer.jestConfigPatterns');
-		const patterns = [...defaultPatterns, ...configPatterns.split(',')].map(p => `*${p.trim()}`);
+		const patterns = [...defaultPatterns, ...configPatterns.split(',')].filter(Boolean).map(p => `*${p.trim()}`);
 
 		const pattern = `+(${patterns.join('|')})`;
 		const options = { matchBase: true, nodir: true, ignore: 'node_modules/**', cwd: Jest.getWorkspaceFolderPath() };
