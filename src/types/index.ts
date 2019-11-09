@@ -45,6 +45,7 @@ export interface CommandMarkdown {
 
 export enum Commands {
 	RUN_TEST = 'yajer.run.test',
+	OPEN_TEST = 'yajer.open.test',
 	DEBUG_FILE = 'yajer.debug.file',
 	CONFIG_FILE = 'yajer.config.file'
 }
@@ -52,6 +53,7 @@ export enum Commands {
 export enum ContextCommands {
 	RUN_TEST = 'yajer.run.test.context',
 	RUN_FILE = 'yajer.run.file.context',
+	OPEN_TEST = 'yajer.open.test.context',
 	DEBUG_FILE = 'yajer.debug.file.context',
 	CONFIG_FILE = 'yajer.config.reset.context'
 }

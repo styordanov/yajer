@@ -1,5 +1,5 @@
 import { TreeItem, TreeItemCollapsibleState, ThemeIcon } from 'vscode';
-import { Test, TestType } from '../types';
+import { Test, TestType, Commands } from '../types';
 import IconPathBuilder from '../lib/icon-path-builder';
 
 export default class TestTreeItem extends TreeItem {
@@ -9,6 +9,12 @@ export default class TestTreeItem extends TreeItem {
 	constructor(test: Test) {
 		super(test.name, TreeItemCollapsibleState.None);
 		this.item = test;
+
+		this.command = {
+			command: Commands.OPEN_TEST,
+			title: '',
+			arguments: [{ context: this }]
+		};
 	}
 
 	get id(): string {

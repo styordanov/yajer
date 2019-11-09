@@ -40,6 +40,7 @@ export default class TestsTreeDataProvider implements TreeDataProvider<TestTreeI
 		this.subscribeOne(ContextCommands.CONFIG_FILE, Commands.CONFIG_FILE, {});
 		this.subscribeOne(ContextCommands.RUN_TEST, Commands.RUN_TEST, {});
 		this.subscribeOne(ContextCommands.RUN_FILE, Commands.RUN_TEST, { context: null });
+		this.subscribeOne(ContextCommands.OPEN_TEST, Commands.OPEN_TEST, {});
 		this.subscribeOne(ContextCommands.DEBUG_FILE, Commands.DEBUG_FILE, {});
 	}
 
