@@ -1,5 +1,5 @@
-import * as upath from 'upath';
 import * as glob from 'glob';
+import * as upath from 'upath';
 import { readFileSync } from 'fs';
 import { workspace } from 'vscode';
 import { URL } from 'url';

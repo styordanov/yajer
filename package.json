@@ -10,7 +10,7 @@
 	},
 	"license": "MIT",
 	"icon": "media/icon.png",
-	"version": "0.1.2",
+	"version": "0.2.1",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
@@ -133,7 +133,9 @@
 	},
 	"main": "./out/extension.js",
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "yarn run compile",
@@ -146,9 +148,12 @@
 		"@types/vscode": "^1.39.0",
 		"glob": "^7.1.4",
 		"mocha": "^6.1.4",
+		"ts-loader": "^6.2.1",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
-		"vscode-test": "^1.2.0"
+		"vscode-test": "^1.2.0",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10"
 	},
 	"dependencies": {
 		"upath": "^1.2.0",

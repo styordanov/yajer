@@ -2,6 +2,10 @@
 
 All notable changes to the "YAJER" extension will be documented in this file.
 
+## [0.2.1]
+
+- Added webpack bundling
+
 ## [0.1.2]
 
 - Added context flag to show/hide the TreeView depending on tests availability
