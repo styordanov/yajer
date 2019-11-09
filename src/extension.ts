@@ -5,11 +5,8 @@ import Document from './documents/document';
 import Decorator from './decorators/decorator';
 import HoverProvider from './hovers/hover-provider';
 import TerminalProvider from './terminals/terminal-provider';
-import RunCommand from './commands/run-command';
-import DebugCommand from './commands/debug-command';
-import ConfigCommand from './commands/config-command';
-import OpenCommand from './commands/open-command';
 import TestsTreeDataProvider from './treeviews/tests-tree-data-provider';
+import { RunCommand, DebugCommand, OpenCommand, ConfigCommand } from './commands';
 
 export function activate(context: ExtensionContext) {
 	const editor = window.activeTextEditor;
