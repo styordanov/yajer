@@ -15,18 +15,9 @@ export default class Jest {
 	}
 
 	static getConfigsPackageJSON(): string[] {
-		const CONFIG_REGEX = /jest.+--config=([a-z0-9\/.]+)/i;
-
 		const packageJSON = upath.join(Jest.getWorkspaceFolderPath(), 'package.json');
-		const contents = readFileSync(new URL(`file://${packageJSON}`), 'utf8');
-
-		const configs = contents.split('\n').reduce((configs, textLine) => {
-			const matches = CONFIG_REGEX.exec(textLine);
-			matches && configs.push(matches[1]);
-			return configs;
-		}, []);
-
-		return [...new Set(configs)];
+		const contents = JSON.parse(readFileSync(new URL(`file://${packageJSON}`), 'utf8'));
+		return contents && contents.scripts && contents.scripts.test.includes('jest') ? [contents.scripts.test] : [];
 	}
 
 	static getConfigs(forceReconfigure: boolean = false): string[] {
@@ -55,5 +46,9 @@ export default class Jest {
 
 	static getCommand(): string {
 		return workspace.getConfiguration().get('yajer.jestCommand') || `node ${Jest.getExecutable()}`;
+	}
+
+	static getCommandArgs(): string {
+		return String(workspace.getConfiguration().get('yajer.jestCommandArgs')).trim();
 	}
 }

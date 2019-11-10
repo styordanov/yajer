@@ -1,4 +1,5 @@
 {
+	"view.explorer.name": "Jest Tests",
 	"command.run.test.title": "Run Test",
 	"command.run.test.description": "Run current test with last known config",
 	"command.run.file.title": "Run File",
@@ -9,5 +10,6 @@
 	"command.config.reset.description": "Reset configuration for current file",
 	"configuration.jest.command.description": "If left empty the extension will run the jest bin from `${workspaceFolder}/node_modules`",
 	"configuration.jest.config.description": "Jest config path, relative to `${workspaceFolder}`, e.g. `jest.config.json`. If left empty the extension will scan recursively `${workspaceFolder}` based on the patterns provided",
-	"configuration.jest.config.patterns.description": "Comma-separated jest config file patterns. Please note that `jest.config.j`s and `jest.config.json` are included by default"
+	"configuration.jest.config.patterns.description": "Comma-separated jest config file patterns. Please note that `jest.config.j`s and `jest.config.json` are included by default",
+	"configuration.jest.config.command.args.description": "Additional CLI arguments, e.g. `--coverage`, `--silent`, etc. Please note that this setting will be passed *as is*"
 }

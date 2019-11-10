@@ -16,7 +16,11 @@ There's also a nice little tree view in the explorer.
 
 ## Anything to configure?
 
-You don't have to. By default YAJER will run with the jest executable from your `${workspaceFolder}/node_modules` and will scan the entire project for configuration files. Of course, you can define the executable and the config file for yourself, as well as the config file patters (note that `jest.config.j`s and `jest.config.json` are included by default)
+You don't have to.
+
+By default YAJER will run with the jest executable from your `${workspaceFolder}/node_modules` and will scan the entire project for configuration files. Of course, you can define the executable and the config file for yourself, as well as the config file patterns (note that `jest.config.j`s and `jest.config.json` are included by default).
+
+Wanna add some spice? Just pass whatever you need as additional cli arguments.
 
 ## Who do I talk to?
 

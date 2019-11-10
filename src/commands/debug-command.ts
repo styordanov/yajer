@@ -10,15 +10,16 @@ export default class DebugCommand extends Command {
 	}
 
 	async execute(args: CommandArgs) {
-		const { file, test } = args;
+		const { file } = args;
 		const config = await this.getConfig(file);
+		const jestArgs = Jest.getCommandArgs().split(' ');
 
 		const debugConfiguration: DebugConfiguration = {
 			type: 'node',
 			request: 'launch',
 			name: 'Debug Jest Tests',
 			program: Jest.getExecutable(),
-			args: [upath.normalize(file), '--config', config],
+			args: [upath.normalize(file), '--config', config, ...jestArgs],
 			console: 'integratedTerminal',
 			internalConsoleOptions: 'neverOpen',
 			disableOptimisticBPs: true

@@ -18,6 +18,8 @@ export default class RunCommand extends Command {
 		test && (command = `${command} -t "${test}"`);
 		config && (command = `${command} -c "${config}"`);
 
+		command = `${command} ${Jest.getCommandArgs()}`;
+
 		const terminal = await this.extension.terminal.get(true);
 		terminal.sendText(command);
 	}

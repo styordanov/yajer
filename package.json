@@ -10,7 +10,7 @@
 	},
 	"license": "MIT",
 	"icon": "media/icon.png",
-	"version": "0.2.1",
+	"version": "0.3.1",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
@@ -25,7 +25,7 @@
 			"explorer": [
 				{
 					"id": "yajer",
-					"name": "Yet Another Jest Runner",
+					"name": "%view.explorer.name%",
 					"when": "hasTestsInView"
 				}
 			]
@@ -38,6 +38,12 @@
 						"type": "string",
 						"default": "",
 						"markdownDescription": "%configuration.jest.command.description%",
+						"scope": "window"
+					},
+					"yajer.jestCommandArgs": {
+						"type": "string",
+						"default": "",
+						"markdownDescription": "%configuration.jest.config.command.args.description%",
 						"scope": "window"
 					},
 					"yajer.jestConfig": {
