@@ -12,7 +12,7 @@ export default class RunCommand extends Command {
 		const { file, context } = args;
 		const config = await this.getConfig(file);
 
-		const test = context ? context.item.name : args.test;
+		const test = context && context.item ? context.item.name : args.test;
 
 		let command = `${Jest.getCommand()} ${upath.normalize(file)}`;
 		test && (command = `${command} -t "${test}"`);
