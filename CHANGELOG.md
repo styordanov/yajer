@@ -2,6 +2,10 @@
 
 All notable changes to the "YAJER" extension will be documented in this file.
 
+## [0.3.2]
+
+- Added decorator icon
+
 ## [0.3.1]
 
 - Added jest cli arguments configuration

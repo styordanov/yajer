@@ -1,10 +1,11 @@
 import { DecorationOptions, TextEditorDecorationType, window } from 'vscode';
 import { Extension } from '../types';
+import IconPathBuilder from '../lib/icon-path-builder';
 
 export default class Decorator {
 	private timeout: NodeJS.Timer;
 	public static decorationType: TextEditorDecorationType = window.createTextEditorDecorationType({
-		after: { margin: '0 0 0 .5rem', contentText: '▶', color: '#c5c5c5' }
+		after: { margin: '0 0 0 .5rem', color: '#c5c5c5', contentIconPath: IconPathBuilder.build('test-context.svg') }
 	});
 
 	constructor(private readonly extension: Extension) {}
