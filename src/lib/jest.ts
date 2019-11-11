@@ -10,7 +10,7 @@ export default class Jest {
 	private static UNIX_PATH = './node_modules/.bin/jest';
 
 	private static getWorkspaceFolderPath(): string {
-		const [workspaceFolder] = workspace.workspaceFolders;
+		const [workspaceFolder] = workspace.workspaceFolders || [];
 		return workspaceFolder ? workspaceFolder.uri.fsPath : './';
 	}
 
