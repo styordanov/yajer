@@ -137,7 +137,7 @@
 			]
 		}
 	},
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"scripts": {
 		"vscode:prepublish": "webpack --mode production",
 		"webpack": "webpack --mode development",
