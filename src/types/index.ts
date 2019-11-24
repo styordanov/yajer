@@ -5,60 +5,67 @@ import Command from '../commands/command';
 import TestTreeItem from '../treeviews/test-tree-item';
 
 export enum TestType {
-	TEST = 'test',
-	DESCRIBE = 'describe'
+  TEST = 'test',
+  DESCRIBE = 'describe'
 }
 export interface Test {
-	id: number | undefined;
-	name: string;
-	range: Range;
-	type: TestType;
-	parent?: number;
+  id: number | undefined;
+  name: string;
+  range: Range;
+  type: TestType;
+  parent?: number;
 }
 
 export interface TestParent {
-	[name: string]: number;
+  [name: string]: number;
 }
 
 export interface Extension {
-	commands: ExtensionCommands;
-	context: ExtensionContext;
-	document: Document;
-	editor: TextEditor;
-	terminal: TerminalProvider;
+  commands: ExtensionCommands;
+  context: ExtensionContext;
+  document: Document;
+  editor: TextEditor;
+  terminal: TerminalProvider;
 }
 
 export interface ExtensionCommands {
-	[key: string]: Command;
+  [key: string]: Command;
 }
 
 export interface CommandArgs {
-	file: string;
-	test?: string;
-	context?: TestTreeItem;
+  file: string;
+  test?: string;
+  context?: TestTreeItem;
 }
 
 export interface CommandMarkdown {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
 }
 
 export enum Commands {
-	RUN_TEST = 'yajer.run.test',
-	OPEN_TEST = 'yajer.open.test',
-	DEBUG_FILE = 'yajer.debug.file',
-	CONFIG_FILE = 'yajer.config.file'
+  RUN_TEST = 'yajer.run.test',
+  OPEN_TEST = 'yajer.open.test',
+  DEBUG_FILE = 'yajer.debug.file',
+  CONFIG_FILE = 'yajer.config.file'
 }
 
-export enum ContextCommands {
-	RUN_TEST = 'yajer.run.test.context',
-	RUN_FILE = 'yajer.run.file.context',
-	OPEN_TEST = 'yajer.open.test.context',
-	DEBUG_FILE = 'yajer.debug.file.context',
-	CONFIG_FILE = 'yajer.config.reset.context'
+export enum EditorContextCommands {
+  RUN_TEST = 'yajer.run.test.editor.context',
+  RUN_FILE = 'yajer.run.file.editor.context',
+  DEBUG_FILE = 'yajer.debug.file.editor.context',
+  CONFIG_FILE = 'yajer.config.reset.editor.context'
+}
+
+export enum TreeViewContextCommands {
+  RUN_TEST = 'yajer.run.test.treeview.context',
+  RUN_FILE = 'yajer.run.file.treeview.context',
+  OPEN_TEST = 'yajer.open.test.treeview.context',
+  DEBUG_FILE = 'yajer.debug.file.treeview.context',
+  CONFIG_FILE = 'yajer.config.reset.treeview.context'
 }
 
 export interface IconPath {
-	dark: string;
-	light: string;
+  dark: string;
+  light: string;
 }

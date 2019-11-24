@@ -1,168 +1,218 @@
 {
-	"name": "yajer",
-	"displayName": "YAJER",
-	"description": "Yet Another Jest Runner",
-	"publisher": "styordanov",
-	"author": "Stoyan Yordanov",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/styordanov/yajer.git"
-	},
-	"license": "MIT",
-	"icon": "media/icon.png",
-	"version": "0.3.2",
-	"engines": {
-		"vscode": "^1.39.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
-	"contributes": {
-		"views": {
-			"explorer": [
-				{
-					"id": "yajer",
-					"name": "%view.explorer.name%",
-					"when": "hasTestsInView"
-				}
-			]
-		},
-		"configuration": [
-			{
-				"title": "Yet Another Jest Runner",
-				"properties": {
-					"yajer.jestCommand": {
-						"type": "string",
-						"default": "",
-						"markdownDescription": "%configuration.jest.command.description%",
-						"scope": "window"
-					},
-					"yajer.jestCommandArgs": {
-						"type": "string",
-						"default": "",
-						"markdownDescription": "%configuration.jest.config.command.args.description%",
-						"scope": "window"
-					},
-					"yajer.jestConfig": {
-						"type": "string",
-						"default": "",
-						"markdownDescription": "%configuration.jest.config.description%",
-						"scope": "window"
-					},
-					"yajer.jestConfigPatterns": {
-						"type": "string",
-						"default": "",
-						"markdownDescription": "%configuration.jest.config.patterns.description%",
-						"scope": "window"
-					}
-				}
-			}
-		],
-		"commands": [
-			{
-				"command": "yajer.run.test.context",
-				"title": "%command.run.test.title%",
-				"icon": {
-					"dark": "/media/continue-dark.svg",
-					"light": "/media/continue-light.svg"
-				}
-			},
-			{
-				"command": "yajer.run.file.context",
-				"title": "%command.run.file.title%",
-				"icon": {
-					"dark": "/media/continue-dark.svg",
-					"light": "/media/continue-light.svg"
-				}
-			},
-			{
-				"command": "yajer.debug.file.context",
-				"title": "%command.debug.file.title%",
-				"icon": {
-					"dark": "/media/debug-dark.svg",
-					"light": "/media/debug-light.svg"
-				}
-			},
-			{
-				"command": "yajer.config.reset.context",
-				"title": "%command.config.reset.title%",
-				"icon": {
-					"dark": "/media/clear-dark.svg",
-					"light": "/media/clear-light.svg"
-				}
-			}
-		],
-		"menus": {
-			"view/title": [
-				{
-					"command": "yajer.run.file.context",
-					"when": "view == yajer",
-					"group": "navigation@1"
-				},
-				{
-					"command": "yajer.debug.file.context",
-					"when": "view == yajer",
-					"group": "navigation@2"
-				},
-				{
-					"command": "yajer.config.reset.context",
-					"when": "view == yajer",
-					"group": "navigation@3"
-				}
-			],
-			"view/item/context": [
-				{
-					"command": "yajer.run.test.context",
-					"when": "view == yajer && viewItem == test",
-					"group": "inline"
-				},
-				{
-					"command": "yajer.run.test.context",
-					"when": "view == yajer && viewItem == test",
-					"group": "navigation@1"
-				},
-				{
-					"command": "yajer.run.file.context",
-					"when": "view == yajer && viewItem == test",
-					"group": "navigation@2"
-				},
-				{
-					"command": "yajer.config.reset.context",
-					"when": "view == yajer && viewItem == test",
-					"group": "z_commands@1"
-				}
-			]
-		}
-	},
-	"main": "./dist/extension.js",
-	"scripts": {
-		"vscode:prepublish": "webpack --mode production",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.6",
-		"@types/node": "^10.12.21",
-		"@types/vscode": "^1.39.0",
-		"glob": "^7.1.4",
-		"mocha": "^6.1.4",
-		"ts-loader": "^6.2.1",
-		"tslint": "^5.12.1",
-		"typescript": "^3.3.1",
-		"vscode-test": "^1.2.0",
-		"webpack": "^4.41.2",
-		"webpack-cli": "^3.3.10"
-	},
-	"dependencies": {
-		"upath": "^1.2.0",
-		"glob": "^7.1.4"
-	}
+  "name": "yajer",
+  "displayName": "YAJER",
+  "description": "Yet Another Jest Runner",
+  "publisher": "styordanov",
+  "author": "Stoyan Yordanov",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/styordanov/yajer.git"
+  },
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "version": "0.4.1",
+  "engines": {
+    "vscode": "^1.39.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "yajer",
+          "name": "%view.explorer.name%",
+          "when": "hasTestsInView"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "Yet Another Jest Runner",
+        "properties": {
+          "yajer.jestCommand": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "%configuration.jest.command.description%",
+            "scope": "window"
+          },
+          "yajer.jestCommandArgs": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "%configuration.jest.config.command.args.description%",
+            "scope": "window"
+          },
+          "yajer.jestConfig": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "%configuration.jest.config.description%",
+            "scope": "window"
+          },
+          "yajer.jestConfigPatterns": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "%configuration.jest.config.patterns.description%",
+            "scope": "window"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "yajer.run.test.treeview.context",
+        "title": "%command.run.test.title%",
+        "icon": {
+          "dark": "/media/continue-dark.svg",
+          "light": "/media/continue-light.svg"
+        }
+      },
+      {
+        "command": "yajer.run.file.treeview.context",
+        "title": "%command.run.file.title%",
+        "icon": {
+          "dark": "/media/continue-dark.svg",
+          "light": "/media/continue-light.svg"
+        }
+      },
+      {
+        "command": "yajer.debug.file.treeview.context",
+        "title": "%command.debug.file.title%",
+        "icon": {
+          "dark": "/media/debug-dark.svg",
+          "light": "/media/debug-light.svg"
+        }
+      },
+      {
+        "command": "yajer.config.reset.treeview.context",
+        "title": "%command.config.reset.title%",
+        "icon": {
+          "dark": "/media/clear-dark.svg",
+          "light": "/media/clear-light.svg"
+        }
+      },
+      {
+        "command": "yajer.run.test.editor.context",
+        "title": "%command.run.test.title%",
+        "icon": {
+          "dark": "/media/continue-dark.svg",
+          "light": "/media/continue-light.svg"
+        }
+      },
+      {
+        "command": "yajer.run.file.editor.context",
+        "title": "%command.run.file.title%",
+        "icon": {
+          "dark": "/media/continue-dark.svg",
+          "light": "/media/continue-light.svg"
+        }
+      },
+      {
+        "command": "yajer.debug.file.editor.context",
+        "title": "%command.debug.file.title%",
+        "icon": {
+          "dark": "/media/debug-dark.svg",
+          "light": "/media/debug-light.svg"
+        }
+      },
+      {
+        "command": "yajer.config.reset.editor.context",
+        "title": "%command.config.reset.title%",
+        "icon": {
+          "dark": "/media/clear-dark.svg",
+          "light": "/media/clear-light.svg"
+        }
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "yajer.run.test.editor.context",
+          "group": "yager@1"
+        },
+        {
+          "command": "yajer.run.file.editor.context",
+          "group": "yager@2"
+        },
+        {
+          "command": "yajer.debug.file.editor.context",
+          "group": "yager@3"
+        },
+        {
+          "command": "yajer.config.reset.editor.context",
+          "group": "yager@4"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "yajer.run.file.treeview.context",
+          "when": "view == yajer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "yajer.debug.file.treeview.context",
+          "when": "view == yajer",
+          "group": "navigation@2"
+        },
+        {
+          "command": "yajer.config.reset.treeview.context",
+          "when": "view == yajer",
+          "group": "navigation@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "yajer.run.test.treeview.context",
+          "when": "view == yajer && viewItem == test",
+          "group": "inline"
+        },
+        {
+          "command": "yajer.run.test.treeview.context",
+          "when": "view == yajer && viewItem == test",
+          "group": "navigation@1"
+        },
+        {
+          "command": "yajer.run.file.treeview.context",
+          "when": "view == yajer && viewItem == test",
+          "group": "navigation@2"
+        },
+        {
+          "command": "yajer.config.reset.treeview.context",
+          "when": "view == yajer && viewItem == test",
+          "group": "z_commands@1"
+        }
+      ]
+    }
+  },
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.12.21",
+    "@types/vscode": "^1.39.0",
+    "glob": "^7.1.4",
+    "mocha": "^6.1.4",
+    "ts-loader": "^6.2.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vscode-test": "^1.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "upath": "^1.2.0",
+    "glob": "^7.1.4"
+  }
 }
