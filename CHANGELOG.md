@@ -2,6 +2,10 @@
 
 All notable changes to the "YAJER" extension will be documented in this file.
 
+## [0.4.2]
+
+- Changed README instructions
+
 ## [0.4.1]
 
 - Added context menu

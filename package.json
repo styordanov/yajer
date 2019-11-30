@@ -3,14 +3,18 @@
   "displayName": "YAJER",
   "description": "Yet Another Jest Runner",
   "publisher": "styordanov",
-  "author": "Stoyan Yordanov",
+  "author": "Stoyan Yordanov <stoyan.yordanov@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/styordanov/yajer.git"
   },
   "license": "MIT",
+  "keywords": [
+    "jest",
+    "test"
+  ],
   "icon": "media/icon.png",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "engines": {
     "vscode": "^1.39.0"
   },
@@ -131,19 +135,19 @@
       "editor/context": [
         {
           "command": "yajer.run.test.editor.context",
-          "group": "yager@1"
+          "group": "yajer@1"
         },
         {
           "command": "yajer.run.file.editor.context",
-          "group": "yager@2"
+          "group": "yajer@2"
         },
         {
           "command": "yajer.debug.file.editor.context",
-          "group": "yager@3"
+          "group": "yajer@3"
         },
         {
           "command": "yajer.config.reset.editor.context",
-          "group": "yager@4"
+          "group": "yajer@4"
         }
       ],
       "view/title": [
@@ -202,7 +206,7 @@
     "@types/mocha": "^5.2.6",
     "@types/node": "^10.12.21",
     "@types/vscode": "^1.39.0",
-    "glob": "^7.1.4",
+    "glob": "^7.1.6",
     "mocha": "^6.1.4",
     "ts-loader": "^6.2.1",
     "tslint": "^5.12.1",
@@ -212,7 +216,6 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "upath": "^1.2.0",
-    "glob": "^7.1.4"
+    "upath": "^1.2.0"
   }
 }

@@ -3,6 +3,7 @@
 node_modules/**
 out/**
 src/**
+media/marketplace/**
 .gitignore
 tsconfig.json
 webpack.config.js
