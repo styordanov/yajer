@@ -12,19 +12,19 @@ This is Yet Another Jest Runner. It will scan the currently open document for te
 
 Just hover the small test icon at the end of you test statement line and choose a command from the tooltip provided,
 
-![YAJER with Hover](https://github.com/styordanov/yajer/blob/master/media/marketplace/hover.gif 'YAJER with Hover')
+![YAJER with Hover](https://github.com/styordanov/yajer/raw/master/media/marketplace/hover.gif 'YAJER with Hover')
 
 or,
 
 Right-click the test statement you'd like to run,
 
-![YAJER with Context](https://github.com/styordanov/yajer/blob/master/media/marketplace/context.gif 'YAJER with Context')
+![YAJER with Context](https://github.com/styordanov/yajer/raw/master/media/marketplace/context.gif 'YAJER with Context')
 
 or,
 
 Use the nice little tree view in the explorer.
 
-![YAJER with TreeView](https://github.com/styordanov/yajer/blob/master/media/marketplace/treeview.gif 'YAJER with TreeView')
+![YAJER with TreeView](https://github.com/styordanov/yajer/raw/master/media/marketplace/treeview.gif 'YAJER with TreeView')
 
 ## Anything to configure?
 
