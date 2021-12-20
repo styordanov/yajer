@@ -1,23 +1,29 @@
-import { Terminal, window, commands } from 'vscode';
+import { Terminal, window, commands } from 'vscode'
 
 export default class TerminalProvider {
-	private terminal: Terminal;
-	private readonly TERMINAL_NAME = 'Yet Another Jest Runner';
+  private terminal: Terminal
+  private readonly TERMINAL_NAME = 'Yet Another Jest Runner'
 
-	constructor() {
-		window.onDidCloseTerminal(() => {
-			this.terminal = null;
-		});
-	}
+  constructor() {
+    window.onDidCloseTerminal(() => {
+      this.terminal = null
+    })
+  }
 
-	async get(clear: Boolean): Promise<Terminal> {
-		!this.terminal && (this.terminal = window.createTerminal(this.TERMINAL_NAME));
-		this.terminal.show();
-		clear && (await this.clear());
-		return this.terminal;
-	}
+  async get(clear: boolean): Promise<Terminal> {
+    if (!this.terminal) {
+      this.terminal = window.createTerminal(this.TERMINAL_NAME)
+    }
 
-	async clear() {
-		await commands.executeCommand('workbench.action.terminal.clear');
-	}
+    if (clear) {
+      await this.clear()
+    }
+
+    this.terminal.show()
+    return this.terminal
+  }
+
+  async clear() {
+    await commands.executeCommand('workbench.action.terminal.clear')
+  }
 }
